@@ -1,6 +1,5 @@
 import { ItemCard } from './index.jsx';
-import { Provider } from 'react-redux';
-import { store } from "store/store";
+
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'components/Molecules/Cards/ItemCard',
@@ -46,11 +45,7 @@ const Template = (props) => {
       src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD2M5z7bwh4MD222SynTaONmpFsLtMvdNwf3fi7Ki2BQ&usqp=CAU&ec=48665698"
     }]
 }
-  return(
-    <Provider store={store}>
-      <ItemCard {...userData}/>
-    </Provider>
-  )
+  return( <ItemCard {...userData}/> )
 }
 
 export const Default = Template.bind({})

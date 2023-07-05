@@ -1,9 +1,8 @@
-import React from 'react';
-import { Button } from './Button';
+import { Button } from './index';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Components/Buttons/Button',
+  title: 'components/Atoms/Buttons',
   component: Button,
   tags: ['autodocs'],
   argTypes: {

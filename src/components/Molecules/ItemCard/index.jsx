@@ -3,12 +3,10 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import styles from './ItemCard.module.scss';
-import { EllipsisVerticalIcon, StarIcon, HeartIcon } from '../../Icons'
+import { EllipsisVerticalIcon, StarIcon, HeartIcon } from 'components/Atoms/Icons'
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { useDispatch } from "react-redux";
-import { setDeleteItem } from "slices/userSlice";
 
 const blankImage = "https://cdn1.vectorstock.com/i/1000x1000/50/20/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg";
 
@@ -21,10 +19,9 @@ export const ItemCard = ({
   reviews = [],
   shopItemsId
 }) => {
-  const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
 
-  const onDelete = () => {dispatch(setDeleteItem(id))}
+  const onDelete = () => {}
 
   return(
     <div className={styles.itemCardContainer}>
