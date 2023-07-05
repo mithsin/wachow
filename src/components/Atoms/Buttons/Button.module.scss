@@ -1,0 +1,50 @@
+.buttonDefault {
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+    background-origin: border-box;
+    box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    &:focus {
+        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+    }
+    &:disabled {
+        background-color: #5c5c5c;
+        background: #5c5c5c;
+        box-shadow: 0 0 0;
+        &:hover {
+            box-shadow: 0 0 0;
+        }
+    }
+    &:hover {
+        box-shadow: 1px 1px 5px #5c5c5c;
+    }
+    &:active {
+        box-shadow: inset 1px 1px 10px #333;
+    }
+
+}
+.buttonStyle {
+    @extend .buttonDefault;
+}
+.deleteStyle {
+    background: linear-gradient(180deg, #f10000 0%, #ac0000 100%);
+    @extend .buttonDefault;
+}
+.resetStyle {
+    background: linear-gradient(180deg, #ffa07a 0%, #db774f 100%);
+    @extend .buttonDefault;
+}
+
+.dropdown {
+    padding: 0 3px 3px;
+}
