@@ -36,7 +36,7 @@ type Shop @model @auth(rules: [
   pickUpLocation: [PickUpLocation]
   images: [Images]
   menu: Menu
-  items: [Item] @hasMany(indexName: "shopItem", fields: ["id"])
+  items: [Item] @hasMany
 }
 
 type Item @model @auth(rules: [
@@ -48,16 +48,12 @@ type Item @model @auth(rules: [
   }
 ]) {
   id: ID!
-  shopId: Shop @belongsTo
+  shopItemId: Shop @belongsTo
   shopName: String
   name: String
   images: [Images]
   sizes: [Size]
   ingrediances: String
-  orderItemId: ID @index(name: "orderItem")
-  order: Order @primaryKey(sortKeyFields: ["orderItemId"])
-  locationItemId: ID @index(name: "locationItem")
-  location: Location @primaryKey(sortKeyFields: ["locationItemId"])
 }
 
 type Order @model @auth(rules: [
@@ -69,7 +65,7 @@ type Order @model @auth(rules: [
   }
 ]) {
   id: ID!
-  items: [Item] @hasMany(indexName: "orderItem", fields: ["id"])
+  items: [Item] @hasMany
 }
 
 type Location @model @auth(rules: [
@@ -81,59 +77,7 @@ type Location @model @auth(rules: [
   }
 ]) {
   id: ID!
-  items: [Item] @hasMany(indexName: "locationItem", fields: ["id"])
-}
-
-type Address {
-    street: String
-    city: String
-    state: String
-    zipCode: String
-}
-
-type Images {
-  id: ID!
-  name: String
-  src: String!
-  shopId: String
-  itemId: String  
-}
-
-type PickUpLocation {
-  id: ID!
-  street: String
-  city: String
-  state: String
-  zipCode: String
-  calendar: [Calendar]
-}
-
-type Calendar {
-  id: ID!
-  title: String
-  description: String
-  attendees: String
-  startDate: String
-  endDate: String
-}
-
-type Menu {
-  id: ID!
-  description: String
-  title: String
-  categories: [Categories]
-}
-
-type Categories {
-  id: ID!
-  categoryName: String
-  items: [String] 
-}
-
-type Size {
-  id: ID!
-  name: String
-  price: String
+  items: [Item] @hasMany
 }
 
 type Address {
