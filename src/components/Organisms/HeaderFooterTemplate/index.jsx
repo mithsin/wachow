@@ -1,7 +1,6 @@
-'use client'
 import { useState } from 'react';
 import { useAuthenticator } from "@aws-amplify/ui-react";
-// import { useRouter } from 'next/navigation'
+import { redirect } from "react-router-dom";
 import styles from './HeaderFooter.module.scss'
 
 import { HeaderDropDown } from "components/Molecules/HeaderDropDown";
@@ -14,20 +13,19 @@ export const HeaderFooterTemplate = ({
 
  const [isEditOpen, setIsEditOpen] = useState(false)
 
- console.log('HeaderFooterTemplate-user------------> ', user)
 
  return (
     <div className={styles.fullWrap}>
         <div className={styles.headerWrapper}>
           <span 
             className={styles.logo} 
-            // onClick={()=> router.push('/')}
+            onClick={()=> redirect('/')}
             >
-            <img src={`${process.env.NEXT_PUBLIC_LOGO}`} alt="WaChow Logo"/>
+            <img src={`${process.env.REACT_APP_LOGO}`} alt="WaChow Logo"/>
           </span>
           <span className={styles.headerRightBlock}>
             {!user 
-              ? <a href="/s/login" className={styles['btn-signin']}>Sign in</a>
+              ? <a href="/login" className={styles['btn-signin']}>Sign in</a>
               : <HeaderDropDown setIsEditOpen={setIsEditOpen} isEditOpen={isEditOpen}/>
             } 
           </span>

@@ -29,7 +29,7 @@ const ImageUploader = ({
             })
 
         // TODO: setup cloudinary
-        axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`, formData)
+        axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData)
             .then(res=> {
                 const resUrl = res.data.secure_url;
                 const formatURL = resUrl.split('/upload/');
