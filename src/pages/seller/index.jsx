@@ -1,6 +1,6 @@
 
 
-export default function Seller(props) {
+export const Seller = (props) => {
 
 
   console.log('Seller-props--->: ', props)
@@ -12,3 +12,4 @@ export default function Seller(props) {
   )
 }
 
+export default Seller;
