@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderDropDown } from './index';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 import { Authenticator } from "@aws-amplify/ui-react";
 import {  persistor, store } from "store/store";
 
@@ -19,16 +19,11 @@ export default meta;
 const Template = (props) => {
 
   return(
-    <Authenticator.Provider>
-
-    <Provider store={store}>
     <HeaderDropDown>
       <h1>
         this is storybook for header and footer
       </h1>
     </HeaderDropDown>
-    </Provider>
-      </Authenticator.Provider>
   )
 }
 

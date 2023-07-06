@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import styles from './page.module.scss'
 
-export default function Home() {
+export const Landing = () => {
   return (
     <div>
       <div className={styles.heroContainer}>

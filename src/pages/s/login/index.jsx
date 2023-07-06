@@ -1,20 +1,18 @@
 'use client'
 
 import { useEffect } from "react";
-import { useRouter } from 'next/navigation'
 import { withAuthenticator, useAuthenticator } from "@aws-amplify/ui-react";
 import { API, graphqlOperation } from 'aws-amplify';
 import "@aws-amplify/ui-react/styles.css";
 import { createUser as createUserMutation } from 'graphql/mutations'
 import { getUser } from 'graphql/queries'
 
-function Login() {
-  const router = useRouter();
+export const Login = () => {
   const { authStatus, user } = useAuthenticator((context) => [context.user]);
   useEffect(() => {
     if (authStatus && authStatus === "authenticated") {
       userLogger(user)
-      router.back()
+      // router.back()
     }
   });
 

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import Link from 'next/link'
 import styles from './HeaderDropDown.module.scss'
 import { UserIcon } from "components/Atoms/Icons";
 
@@ -25,9 +24,9 @@ export const HeaderDropDown = ({setIsEditOpen, isEditOpen}) => {
       { isDropDown &&
         <ul className={styles['ulWrap']}>
           <li>
-            <Link href="/seller" onClick={dropDownTrigger}>
+            <a href="/seller" onClick={dropDownTrigger}>
               Seller page
-            </Link>
+            </a>
           </li>
           <li>
             <span onClick={()=>{
