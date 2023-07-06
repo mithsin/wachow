@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import styles from './ItemCard.module.scss';
@@ -54,9 +53,9 @@ export const ItemCard = ({
                 <div
                   className={styles.swipWrap}
                   style={{ backgroundImage: `url(${ blankImage })` }} >
-                    <Link href={`/shop/${shopItemsId}/i/${id}`}>
+                    <a href={`/shop/${shopItemsId}/i/${id}`}>
                       <h4>{itemName}</h4>
-                    </Link> 
+                    </a> 
                 </div>
               }
             </Swiper>
