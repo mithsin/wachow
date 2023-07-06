@@ -7,7 +7,7 @@ import config from 'aws-exports';
 Amplify.configure({...config, ssr: true});
 
 const AwsProvider = ({children}) => (
-  <Authenticator.Provider >
+  <Authenticator.Provider>
     {children}
   </Authenticator.Provider>
 );
