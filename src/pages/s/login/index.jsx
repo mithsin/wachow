@@ -23,33 +23,27 @@ export const Login = () => {
   const userLogger = async(userData) => {
     console.log('userLogger-userData-->: ', userData)
     try {
-      console.log('userData.username-->: ', userData.username)
       const apiUserData = await API.graphql({
         query: getUser,
         variables: { id: userData.username }
       });
       console.log('userLogger-apiUserData-->: ', apiUserData)
-
+        if(!apiUserData.data.getUser){
+          const data = {
+            id: userData.attributes.sub,
+            email: userData.attributes.email
+          }
+          console.log('!userLogger-data-->: ', data)
+          await API.graphql(graphqlOperation(createUserMutation, {input: data}))
+          .then(res => {
+            console.log('createUserMutation-re--->: ', res)
+    
+          })
+          .catch(err => console.log('createUserMutation-err--->: ', err))
+       }
+        
     } catch(error){
       console.log('userLogger-error-->: ', error)
-      // try {
-      //   if(!error.data.getUser){
-      //     const data = {
-      //       id: userData.attributes.sub,
-      //       email: userData.attributes.email
-      //     }
-      //     console.log('!userLogger-data-->: ', data)
-      //     await API.graphql(graphqlOperation(createUserMutation, {input: data}))
-      //     .then(res => {
-      //       console.log('createUserMutation-re--->: ', res)
-    
-      //     })
-      //     .catch(err => console.log('createUserMutation-err--->: ', err))
-      //   }
-      // }catch(err){
-      //   console.log('create-user-err--->: ', err)
-      // }
-
     } 
 
     console.log('trigger setUserInfo dispatch')
