@@ -16,8 +16,10 @@ export const getUser = /* GraphQL */ `
           updatedAt
           userShopsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdDate
       firstName
@@ -31,16 +33,19 @@ export const getUser = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       address {
         street
         city
         state
         zipCode
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -55,6 +60,7 @@ export const listUsers = /* GraphQL */ `
         id
         shops {
           nextToken
+          __typename
         }
         createdDate
         firstName
@@ -68,18 +74,22 @@ export const listUsers = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         address {
           street
           city
           state
           zipCode
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -91,6 +101,7 @@ export const getShop = /* GraphQL */ `
         id
         shops {
           nextToken
+          __typename
         }
         createdDate
         firstName
@@ -104,16 +115,19 @@ export const getShop = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         address {
           street
           city
           state
           zipCode
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       phone
       email
@@ -132,7 +146,9 @@ export const getShop = /* GraphQL */ `
           attendees
           startDate
           endDate
+          __typename
         }
+        __typename
       }
       images {
         id
@@ -140,6 +156,7 @@ export const getShop = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       menu {
         id
@@ -149,7 +166,9 @@ export const getShop = /* GraphQL */ `
           id
           categoryName
           items
+          __typename
         }
+        __typename
       }
       items {
         items {
@@ -163,13 +182,16 @@ export const getShop = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       userShopsId
       owner
+      __typename
     }
   }
 `;
@@ -193,6 +215,7 @@ export const listShops = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          __typename
         }
         phone
         email
@@ -204,6 +227,7 @@ export const listShops = /* GraphQL */ `
           city
           state
           zipCode
+          __typename
         }
         images {
           id
@@ -211,21 +235,26 @@ export const listShops = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         menu {
           id
           description
           title
+          __typename
         }
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         userShopsId
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -246,6 +275,7 @@ export const getItem = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          __typename
         }
         phone
         email
@@ -257,6 +287,7 @@ export const getItem = /* GraphQL */ `
           city
           state
           zipCode
+          __typename
         }
         images {
           id
@@ -264,19 +295,23 @@ export const getItem = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         menu {
           id
           description
           title
+          __typename
         }
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         userShopsId
         owner
+        __typename
       }
       shopName
       name
@@ -286,11 +321,13 @@ export const getItem = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       sizes {
         id
         name
         price
+        __typename
       }
       ingrediances
       createdAt
@@ -299,6 +336,7 @@ export const getItem = /* GraphQL */ `
       orderItemsId
       locationItemsId
       owner
+      __typename
     }
   }
 `;
@@ -321,6 +359,7 @@ export const listItems = /* GraphQL */ `
           updatedAt
           userShopsId
           owner
+          __typename
         }
         shopName
         name
@@ -330,11 +369,13 @@ export const listItems = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         sizes {
           id
           name
           price
+          __typename
         }
         ingrediances
         createdAt
@@ -343,8 +384,10 @@ export const listItems = /* GraphQL */ `
         orderItemsId
         locationItemsId
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -364,12 +407,15 @@ export const getOrder = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -384,12 +430,15 @@ export const listOrders = /* GraphQL */ `
         id
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -409,12 +458,15 @@ export const getLocation = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -429,12 +481,15 @@ export const listLocations = /* GraphQL */ `
         id
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;

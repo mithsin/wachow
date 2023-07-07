@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import styles from './Cards.module.scss';
@@ -38,7 +38,7 @@ export const CarouselCubeCard = ({data}) => {
                                 style={{backgroundImage: "url(" + list.src + ")"}}
                                 >
                                 {list.itemId 
-                                    ? <Link href={`/shop/${shopId}/i/${list.itemId}`}>
+                                    ? <Link to={`/shop/${shopId}/i/${list.itemId}`}>
                                         <h4>{list.name}</h4>
                                     </Link> 
                                     : <h4>{list.name}</h4>
@@ -50,7 +50,9 @@ export const CarouselCubeCard = ({data}) => {
             </Swiper>
         </div>
         <div>
-            <Link href={`/shop/${shopId}`}> <h3 className={styles.itemTitle}>{shopName}</h3></Link>
+            <Link to={`/shop/${shopId}`}> 
+                <h3 className={styles.itemTitle}>{shopName}</h3>
+            </Link>
         </div>
     </div>
   );

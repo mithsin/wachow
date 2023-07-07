@@ -1,30 +1,39 @@
 {
   "api": {
-    "wachowapp": {
+    "wachow": {
       "dependsOn": [
         {
           "attributes": [
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "wachowapp8d9cf1c5"
+          "resourceName": "wachowc6164ec0"
         }
       ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authwachowapp8d9cf1c5"
+              "apiKeyConfig": {
+                "apiKeyExpirationDate": "2023-07-14T15:41:55.974Z",
+                "apiKeyExpirationDays": 7,
+                "description": ""
+              },
+              "authenticationType": "API_KEY"
+            },
+            {
+              "authenticationType": "AWS_LAMBDA",
+              "lambdaAuthorizerConfig": {
+                "lambdaFunction": "graphQlLambdaAuthorizere7873880",
+                "ttlSeconds": "300"
               }
             }
           ],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authwachowc6164ec0"
+            }
           }
         }
       },
@@ -33,7 +42,7 @@
     }
   },
   "auth": {
-    "wachowapp8d9cf1c5": {
+    "wachowc6164ec0": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -60,8 +69,33 @@
       "service": "Cognito"
     }
   },
+  "function": {
+    "graphQlLambdaAuthorizere7873880": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_graphQlLambdaAuthorizere7873880_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizere7873880"
+        }
+      ]
+    },
+    "AMPLIFY_function_graphQlLambdaAuthorizere7873880_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizere7873880"
+        }
+      ]
+    }
+  },
   "storage": {
-    "s3a9a9a394": {
+    "s33151ee85": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"

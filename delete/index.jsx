@@ -1,29 +1,24 @@
-import { useEffect } from "react";
-import { API, graphqlOperation } from 'aws-amplify';
-import { Authenticator, useAuthenticator, View } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+'use client'
 
-import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from 'react-router';
+import { useEffect } from "react";
+import { withAuthenticator, useAuthenticator } from "@aws-amplify/ui-react";
+import { API, graphqlOperation } from 'aws-amplify';
+import "@aws-amplify/ui-react/styles.css";
 import { createUser as createUserMutation } from 'graphql/mutations'
 import { getUser } from 'graphql/queries'
-import { setLoginUserInfo, userInfo } from "slices/userSlice";
 
 export const Login = () => {
   const { authStatus, user } = useAuthenticator((context) => [context.user]);
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const navigate = useNavigate();
-  let from = location.state?.from?.pathname || '/';
 
-  // console.log('Login-authStatus, user---.: ', authStatus, user)
+  console.log('Login-authStatus-->: ', authStatus)
+  console.log('Login-user-->: ', user)
 
   useEffect(() => {
-    if (authStatus === 'authenticated') {
+    if (authStatus && authStatus === "authenticated") {
       userLogger(user)
-      navigate(from, { replace: true });
+      // router.back()
     }
-  }, [authStatus, navigate, from]);
+  });
 
   const userLogger = async(userData) => {
     // console.log('userLogger-userData-->: ', userData)
@@ -46,17 +41,27 @@ export const Login = () => {
           })
           .catch(err => console.log('createUserMutation-err--->: ', err))
        }
-       dispatch(setLoginUserInfo(apiUserData.data.getUser))
+        
     } catch(error){
       console.log('userLogger-error-->: ', error)
     } 
+
+    // console.log('trigger setUserInfo dispatch')
+
   }
 
-  return (
-    <View className="auth-wrapper">
-      <Authenticator></Authenticator>
-    </View>
-  );
+  return <></>;
 }
 
-export default Login
+
+
+export default withAuthenticator(Login, {
+  socialProviders: ['google']
+});
+
+
+
+// {
+//   "id": "c215dccf-d1d3-491d-bc2c-d653f4a8c55d",
+//   "email": "paf1100@gmail.com"
+// }
