@@ -1,52 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    deleteUser(input: $input, condition: $condition) {
-      id
-      shops {
-        items {
-          id
-          phone
-          email
-          description
-          shopName
-          createdAt
-          updatedAt
-          userShopsId
-          owner
-        }
-        nextToken
-      }
-      createdDate
-      firstName
-      lastName
-      phone
-      email
-      isSeller
-      images {
-        id
-        name
-        src
-        shopId
-        itemId
-      }
-      address {
-        street
-        city
-        state
-        zipCode
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
 export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
@@ -65,8 +19,10 @@ export const createUser = /* GraphQL */ `
           updatedAt
           userShopsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdDate
       firstName
@@ -80,16 +36,19 @@ export const createUser = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       address {
         street
         city
         state
         zipCode
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -111,8 +70,10 @@ export const updateUser = /* GraphQL */ `
           updatedAt
           userShopsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdDate
       firstName
@@ -126,16 +87,70 @@ export const updateUser = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       address {
         street
         city
         state
         zipCode
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      shops {
+        items {
+          id
+          phone
+          email
+          description
+          shopName
+          createdAt
+          updatedAt
+          userShopsId
+          owner
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdDate
+      firstName
+      lastName
+      phone
+      email
+      isSeller
+      images {
+        id
+        name
+        src
+        shopId
+        itemId
+        __typename
+      }
+      address {
+        street
+        city
+        state
+        zipCode
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
     }
   }
 `;
@@ -150,6 +165,7 @@ export const createShop = /* GraphQL */ `
         id
         shops {
           nextToken
+          __typename
         }
         createdDate
         firstName
@@ -163,16 +179,19 @@ export const createShop = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         address {
           street
           city
           state
           zipCode
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       phone
       email
@@ -191,7 +210,9 @@ export const createShop = /* GraphQL */ `
           attendees
           startDate
           endDate
+          __typename
         }
+        __typename
       }
       images {
         id
@@ -199,6 +220,7 @@ export const createShop = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       menu {
         id
@@ -208,7 +230,9 @@ export const createShop = /* GraphQL */ `
           id
           categoryName
           items
+          __typename
         }
+        __typename
       }
       items {
         items {
@@ -222,13 +246,16 @@ export const createShop = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       userShopsId
       owner
+      __typename
     }
   }
 `;
@@ -243,6 +270,7 @@ export const updateShop = /* GraphQL */ `
         id
         shops {
           nextToken
+          __typename
         }
         createdDate
         firstName
@@ -256,16 +284,19 @@ export const updateShop = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         address {
           street
           city
           state
           zipCode
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       phone
       email
@@ -284,7 +315,9 @@ export const updateShop = /* GraphQL */ `
           attendees
           startDate
           endDate
+          __typename
         }
+        __typename
       }
       images {
         id
@@ -292,6 +325,7 @@ export const updateShop = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       menu {
         id
@@ -301,7 +335,9 @@ export const updateShop = /* GraphQL */ `
           id
           categoryName
           items
+          __typename
         }
+        __typename
       }
       items {
         items {
@@ -315,13 +351,16 @@ export const updateShop = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       userShopsId
       owner
+      __typename
     }
   }
 `;
@@ -336,6 +375,7 @@ export const deleteShop = /* GraphQL */ `
         id
         shops {
           nextToken
+          __typename
         }
         createdDate
         firstName
@@ -349,16 +389,19 @@ export const deleteShop = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         address {
           street
           city
           state
           zipCode
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       phone
       email
@@ -377,7 +420,9 @@ export const deleteShop = /* GraphQL */ `
           attendees
           startDate
           endDate
+          __typename
         }
+        __typename
       }
       images {
         id
@@ -385,6 +430,7 @@ export const deleteShop = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       menu {
         id
@@ -394,7 +440,9 @@ export const deleteShop = /* GraphQL */ `
           id
           categoryName
           items
+          __typename
         }
+        __typename
       }
       items {
         items {
@@ -408,13 +456,16 @@ export const deleteShop = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       userShopsId
       owner
+      __typename
     }
   }
 `;
@@ -438,6 +489,7 @@ export const createItem = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          __typename
         }
         phone
         email
@@ -449,6 +501,7 @@ export const createItem = /* GraphQL */ `
           city
           state
           zipCode
+          __typename
         }
         images {
           id
@@ -456,19 +509,23 @@ export const createItem = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         menu {
           id
           description
           title
+          __typename
         }
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         userShopsId
         owner
+        __typename
       }
       shopName
       name
@@ -478,11 +535,13 @@ export const createItem = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       sizes {
         id
         name
         price
+        __typename
       }
       ingrediances
       createdAt
@@ -491,6 +550,7 @@ export const createItem = /* GraphQL */ `
       orderItemsId
       locationItemsId
       owner
+      __typename
     }
   }
 `;
@@ -514,6 +574,7 @@ export const updateItem = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          __typename
         }
         phone
         email
@@ -525,6 +586,7 @@ export const updateItem = /* GraphQL */ `
           city
           state
           zipCode
+          __typename
         }
         images {
           id
@@ -532,19 +594,23 @@ export const updateItem = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         menu {
           id
           description
           title
+          __typename
         }
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         userShopsId
         owner
+        __typename
       }
       shopName
       name
@@ -554,11 +620,13 @@ export const updateItem = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       sizes {
         id
         name
         price
+        __typename
       }
       ingrediances
       createdAt
@@ -567,6 +635,7 @@ export const updateItem = /* GraphQL */ `
       orderItemsId
       locationItemsId
       owner
+      __typename
     }
   }
 `;
@@ -590,6 +659,7 @@ export const deleteItem = /* GraphQL */ `
           createdAt
           updatedAt
           owner
+          __typename
         }
         phone
         email
@@ -601,6 +671,7 @@ export const deleteItem = /* GraphQL */ `
           city
           state
           zipCode
+          __typename
         }
         images {
           id
@@ -608,19 +679,23 @@ export const deleteItem = /* GraphQL */ `
           src
           shopId
           itemId
+          __typename
         }
         menu {
           id
           description
           title
+          __typename
         }
         items {
           nextToken
+          __typename
         }
         createdAt
         updatedAt
         userShopsId
         owner
+        __typename
       }
       shopName
       name
@@ -630,11 +705,13 @@ export const deleteItem = /* GraphQL */ `
         src
         shopId
         itemId
+        __typename
       }
       sizes {
         id
         name
         price
+        __typename
       }
       ingrediances
       createdAt
@@ -643,6 +720,7 @@ export const deleteItem = /* GraphQL */ `
       orderItemsId
       locationItemsId
       owner
+      __typename
     }
   }
 `;
@@ -665,12 +743,15 @@ export const createOrder = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -693,12 +774,15 @@ export const updateOrder = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -721,12 +805,15 @@ export const deleteOrder = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -749,12 +836,15 @@ export const createLocation = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -777,12 +867,15 @@ export const updateLocation = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -805,12 +898,15 @@ export const deleteLocation = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          __typename
         }
         nextToken
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;

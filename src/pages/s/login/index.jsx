@@ -9,6 +9,10 @@ import { getUser } from 'graphql/queries'
 
 export const Login = () => {
   const { authStatus, user } = useAuthenticator((context) => [context.user]);
+
+  console.log('Login-authStatus-->: ', authStatus)
+  console.log('Login-user-->: ', user)
+
   useEffect(() => {
     if (authStatus && authStatus === "authenticated") {
       userLogger(user)
@@ -17,24 +21,36 @@ export const Login = () => {
   });
 
   const userLogger = async(userData) => {
-    const apiUserData = await API.graphql({
-      query: getUser,
-      variables: { id: userData.id }
-    });
+    console.log('userLogger-userData-->: ', userData)
+    try {
+      console.log('userData.username-->: ', userData.username)
+      const apiUserData = await API.graphql({
+        query: getUser,
+        variables: { id: userData.username }
+      });
+      console.log('userLogger-apiUserData-->: ', apiUserData)
+
+    } catch(error){
+      console.log('userLogger-error-->: ', error)
+      // try {
+      //   if(!error.data.getUser){
+      //     const data = {
+      //       id: userData.attributes.sub,
+      //       email: userData.attributes.email
+      //     }
+      //     console.log('!userLogger-data-->: ', data)
+      //     await API.graphql(graphqlOperation(createUserMutation, {input: data}))
+      //     .then(res => {
+      //       console.log('createUserMutation-re--->: ', res)
     
-    if(!apiUserData.data.getUser){
-      const data = {
-        id: userData.attributes.sub,
-        email: userData.attributes.email
-      }
+      //     })
+      //     .catch(err => console.log('createUserMutation-err--->: ', err))
+      //   }
+      // }catch(err){
+      //   console.log('create-user-err--->: ', err)
+      // }
 
-      await API.graphql(graphqlOperation(createUserMutation, {input: data}))
-      .then(res => {
-        console.log('createUserMutation-re--->: ', res)
-
-      })
-      .catch(err => console.log('createUserMutation-err--->: ', err))
-    }
+    } 
 
     console.log('trigger setUserInfo dispatch')
 
@@ -48,3 +64,10 @@ export const Login = () => {
 export default withAuthenticator(Login, {
   socialProviders: ['google']
 });
+
+
+
+// {
+//   "id": "c215dccf-d1d3-491d-bc2c-d653f4a8c55d",
+//   "email": "paf1100@gmail.com"
+// }

@@ -26,7 +26,9 @@ export const HeaderFooterTemplate = ({
           <span className={styles.headerRightBlock}>
             {!user 
               ? <a href="/login" className={styles['btn-signin']}>Sign in</a>
-              : <HeaderDropDown setIsEditOpen={setIsEditOpen} isEditOpen={isEditOpen}/>
+              : 
+              <div>already sign in</div>
+              //<HeaderDropDown setIsEditOpen={setIsEditOpen} isEditOpen={isEditOpen}/>
             } 
           </span>
         </div>
