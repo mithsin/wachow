@@ -3,14 +3,17 @@ import { Auth } from 'aws-amplify';
 import styles from './HeaderDropDown.module.scss'
 import { UserIcon } from "components/Atoms/Icons";
 
+import { useDispatch } from "react-redux";
+import { setClearInfo } from "slices/userSlice";
+
 export const HeaderDropDown = ({setIsEditOpen, isEditOpen}) => {
   const [isDropDown, setIsDropDown] = useState(false)
-
+  const dispatch = useDispatch();
   const handleSignout = async(e) => {
     e.preventDefault()
     try {
       await Auth.signOut();
-      console.log('logout successfully')
+      dispatch(setClearInfo());
       dropDownTrigger()
     } catch (error) {
       console.log('error signing out: ', error);

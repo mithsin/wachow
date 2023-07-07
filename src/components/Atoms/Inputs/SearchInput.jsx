@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SearchLocationIcon } from 'components/Molecules/Icons';
+import { SearchLocationIcon } from 'components/Atoms/Icons';
 import styles from './Inputs.module.scss';
 export const SearchInput = () => {
     const [ inputState, setInputState ] = useState("")
@@ -13,7 +13,7 @@ export const SearchInput = () => {
     }
 
     return(
-        <div class={styles.searchInputWrapper}>
+        <div className={styles.searchInputWrapper}>
             <input 
             type="text" 
             role="combobox" 

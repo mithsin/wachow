@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { API } from 'aws-amplify';
-import { updateUser } from 'src/graphql/mutations'
+import { updateUser } from 'graphql/mutations'
 import styles from './UserForm.module.scss'
 
 import { Button } from 'components/Atoms/Buttons'
 import { TextInput } from 'components/Atoms/Inputs'
 import ImageUploader from 'components/Molecules/ImageUploader'
 import { Modal } from 'components/Molecules/Modal'
-// import { useDispatch } from "react-redux";
-// import { setUserInfo } from "slices/userSlice";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "slices/userSlice";
 
 const inputObject = [
   {name: "firstName", label: "first name", type: "text"},
@@ -25,9 +25,10 @@ const addressInputObject = [
   {"data-type": "address", name: "zipCode", label: "zip code", type: "text"}
 ]
 
-export const UserForm = ({closeModal, isModalOpen, userData={}}) => {
+export const UserForm = ({closeModal, isModalOpen, userData}) => {
   const [inputState, setInputState] = useState({})
-  // const dispatch = useDispatch();
+  // console.log('UserForm-userData--> ', userData)
+  const dispatch = useDispatch();
   const onInputChange = (e) => {
     if(e.target.getAttribute('data-type') === "address"){
       setInputState({
@@ -71,7 +72,8 @@ export const UserForm = ({closeModal, isModalOpen, userData={}}) => {
       query: updateUser,
       variables: {input : {id: userData.id, ...inputState}}
     }).then(res => {
-      // dispatch(setUserInfo(res.data.updateUser))
+      // console.log('UserForm-res-->: ', res)
+      dispatch(setUserInfo(res.data.updateUser))
     })
     .catch(err=> console.log('err-->: ', err));
   }
@@ -84,11 +86,10 @@ export const UserForm = ({closeModal, isModalOpen, userData={}}) => {
       <div className={styles.userFormWrap}>
         <div className={styles.initInputWrap}>
           {
-            inputObject.map(object => 
+            inputObject.map(object =>
               object.name === "images"
               ? (
-                <div className={styles.imageUploadBlock} key="image
-                ">
+                <div className={styles.imageUploadBlock} key="image">
                   <p>add image</p>
                   <ImageUploader 
                     onImageChange={onItemChange}
@@ -101,7 +102,7 @@ export const UserForm = ({closeModal, isModalOpen, userData={}}) => {
                   label={object.label}
                   name={object.name}
                   type={object.type}
-                  placeholder={userData[object.name]??inputState[object.name]}
+                  placeholder={userData[object.name]? userData[object.name] : inputState[object.name]}
                   onChange={onInputChange}
                 />
             )
