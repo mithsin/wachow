@@ -1,0 +1,18 @@
+.shopCardWrap {
+
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.shopCardContainer {
+    margin: 16px 0 0;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat( 1, minmax(200px, 1fr) );
+    @media only screen and (min-width: 690px) {
+        grid-template-columns: repeat( auto-fill, minmax(350px, 1fr) );
+    }
+}

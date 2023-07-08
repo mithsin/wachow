@@ -9,7 +9,6 @@ import { mockHomeData } from 'mockData/HomeMockData';
 export const Landing = () => {
 
   const sellerData = mockHomeData.sellers ?? [];
-  console.log('Landing-sellerData-->: ', sellerData)
   return (
     <div>
       <div className={styles.heroContainer}>

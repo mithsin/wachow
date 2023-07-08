@@ -10,7 +10,7 @@ import ImageUploader from 'components/Molecules/ImageUploader';
 
 // import { setAddItem } from "../../../../slices/userSlice";
 
-export const NewItemForm = ({closeModal, isModalOpen, userData}) => {
+export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     const dispatch = useDispatch();
     const [imageURL, setImageURL] = useState('');
     const [imageInfo, setImageInfo] = useState();
@@ -121,7 +121,7 @@ export const NewItemForm = ({closeModal, isModalOpen, userData}) => {
 
     return(
         <Modal
-            closeModal={closeModal}
+            setIsModalOpen={setIsModalOpen}
             isModalOpen={isModalOpen}
             modalTitle="ITEM FORM">
             <div className={styles['outter-block']}> 

@@ -25,7 +25,7 @@ const addressInputObject = [
   {"data-type": "address", name: "zipCode", label: "zip code", type: "text"}
 ]
 
-export const UserForm = ({closeModal, isModalOpen, userData}) => {
+export const UserForm = ({setIsModalOpen, isModalOpen, userData}) => {
   const [inputState, setInputState] = useState({})
   // console.log('UserForm-userData--> ', userData)
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ export const UserForm = ({closeModal, isModalOpen, userData}) => {
 
   return(
     <Modal
-      closeModal={closeModal}
+      setIsModalOpen={setIsModalOpen}
       isModalOpen={isModalOpen}
       modalTitle="User Form">
       <div className={styles.userFormWrap}>
