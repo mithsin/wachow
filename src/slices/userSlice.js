@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from 'aws-amplify';
 import { getUser } from 'graphql/queries';
-import { createShop, createItem, deleteItem } from 'graphql/mutations'
+import { createShop, deleteShop, createItem, deleteItem } from 'graphql/mutations'
 
 const initialState = {
   authState: false,
@@ -44,23 +44,29 @@ export const userSlice = createSlice({
           return updateUserData
         },
         setShopUpdate(state, action){
+          console.log('action.payload-->: ', action.payload)
           return {
             ...state, 
             shops: {
-              items: [...state.shops.items, ...action.payload]
+              items: [action.payload, ...state.shops.items]
             }
           }
         },
         setDeleteShop(state, action){
+          console.log('action.payload-->: ', action.payload)
           return {
             ...state, 
             shops: {
-              items: [...state.shops.items, ...action.payload]
-            }
+              items: [],
+              nextToken: ""
+            },
           }
         },
         setUpdateTrigger(state, action){
-          return state.updateTrigger === action.payload
+          return {
+            ...state,
+            updateTrigger: action.payload
+          }
         },
         setClearInfo(){
           return initialState
@@ -72,6 +78,7 @@ export const {
   setLoginUserInfo,
   setUserInfo,
   setShopUpdate,
+  setDeleteShop,
   setClearInfo,
   setUpdateTrigger
 } = userSlice.actions;
@@ -90,13 +97,15 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
 }
 
 export const setAddShop = ( inputConver ) => async(dispatch) => {
-  dispatch(setShopUpdate(inputConver))
+  // dispatch(setShopUpdate(inputConver))
+  console.log('setAddShop-inputConver--->: ', inputConver)
   
 
   await API.graphql({ 
     query: createShop,
     variables: {input : inputConver}
   }).then(response => {
+    console.log('setAddShop-response--->: ', response)
     dispatch(setUserInfo({
       shops: {
         items : {
@@ -108,6 +117,20 @@ export const setAddShop = ( inputConver ) => async(dispatch) => {
     dispatch(setUpdateTrigger(true));
   })
   .catch(err => console.log('Seller-err--> ', err))
+}
+
+export const setDeleteShopSlice = ( id ) => async(dispatch) => {
+  console.log('setDeleteItem-id-->: ', id)
+
+  await API.graphql({
+    query: deleteShop,
+    variables: {input : {id: id}}
+  }).then(res => {
+    console.log('deleteShop-res-->: ', res)
+    dispatch(setDeleteShop())
+    dispatch(setUpdateTrigger(true));
+  })
+  .catch(err=> console.log('err-->: ', err));
 }
 
 export const setAddItem = ( inputConver ) => async(dispatch) => {

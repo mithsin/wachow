@@ -1,4 +1,31 @@
 {
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wachow-main-210906-authRole",
+      "UnauthRoleArn": "arn:aws:iam::006722475295:role/amplify-wachow-main-210906-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::006722475295:role/amplify-wachow-main-210906-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-wachow-main-210906-deployment",
+      "UnauthRoleName": "amplify-wachow-main-210906-unauthRole",
+      "StackName": "amplify-wachow-main-210906",
+      "StackId": "arn:aws:cloudformation:us-east-1:006722475295:stack/amplify-wachow-main-210906/8217a450-1d0a-11ee-99e1-0e39ee7e02a5",
+      "AmplifyAppId": "d231p64ckf890i"
+    },
+    "categories": {
+      "auth": {
+        "wachowc6164ec0": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizere7873880": {
+          "deploymentBucketName": "amplify-wachow-main-210906-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizere7873880-496a6c61303247563369-build.zip"
+        }
+      },
+      "storage": {
+        "s33151ee85": {}
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplifyd43858556d594-staging-153251-authRole",
