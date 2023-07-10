@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from 'aws-amplify';
-import { getUser } from 'graphql/queries';
+import { getUser, getShop } from 'graphql/queries';
 import { createShop, deleteShop, createItem, deleteItem } from 'graphql/mutations'
 
 const initialState = {
@@ -92,6 +92,17 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
     console.log('fetchUserState-response-->: ', response.data)
     dispatch(setUserInfo(response.data.getUser));
     dispatch(setUpdateTrigger(false));
+  })
+  .catch(err => console.log('fetchUserState-err--> ', err))
+}
+
+export const fetchShopState = ( shopId ) => async(dispatch) => {
+  await API.graphql({ 
+    query: getShop,
+    variables: { id: shopId }
+  }).then(response => {
+    console.log('fetchUserState-response-->: ', response.data)
+    return response.data.getShop
   })
   .catch(err => console.log('fetchUserState-err--> ', err))
 }
