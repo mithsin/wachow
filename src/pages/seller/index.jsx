@@ -11,7 +11,7 @@ export const Seller = (props) => {
   const userState = useSelector(userInfo)
   const [ isNewShop, setIsNewShop ] = useState(false)
 
-  // console.log('Seller-userState--->: ', userState)
+  console.log('Seller-userState--->: ', userState)
   const {
     firstName="",
     lastName="",
@@ -33,3 +33,16 @@ export const Seller = (props) => {
 }
 
 export default Seller;
+
+// const userStateMockData = {
+//   "id": "ac43b063-299a-4301-b1ed-918658c42d3a",
+//   "phone": "1231231234",
+//   "email": null,
+//   "description": null,
+//   "shopName": "Wacho Shop",
+//   "createdAt": "2023-07-10T13:53:27.495Z",
+//   "updatedAt": "2023-07-10T13:53:27.495Z",
+//   "userShopsId": "8458d4f8-1031-707d-4dab-602361fe05f2",
+//   "owner": "8458d4f8-1031-707d-4dab-602361fe05f2",
+//   "__typename": "Shop"
+// }

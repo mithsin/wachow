@@ -43,8 +43,8 @@ export const ItemCard = ({
           </span>
           <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
               {images ?
-                images.map((list) => 
-                  <SwiperSlide key={list.itemName}>
+                images.map((list, i) => 
+                  <SwiperSlide key={`${list.itemName}--${i}`}>
                     <div
                       className={styles.swipWrap}
                       style={{ backgroundImage: `url(${ list?.src ? list?.src : blankImage })` }} />

@@ -9,7 +9,7 @@ import { ItemCard } from 'components/Molecules/Cards/ItemCard';
 import { NewItemForm } from 'components/Molecules/Forms/NewItemForm';
 
 export const ShopCard = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [isItemModalOpen, setIsItemModalOpen] = useState(false)
   const {
     id, 
@@ -17,11 +17,11 @@ export const ShopCard = (props) => {
     description,
     items
   } = props;
-  console.log('ShopCard-props-->: ', props)
+  // console.log('ShopCard-props-->: ', props)
 
-  const onClickDeleteShop = async() => {
-    dispatch(setDeleteShopSlice(id))
-  }
+  // const onClickDeleteShop = async() => {
+  //   dispatch(setDeleteShopSlice(id))
+  // }
 
   return(
     <div className={styles.shopCardWrap}>
@@ -31,19 +31,19 @@ export const ShopCard = (props) => {
         <Button
           label="Add New Item" 
           onClick={()=>setIsItemModalOpen(!isItemModalOpen)}/>
-        <Button 
+        {/* <Button 
           label="Delete Shop"
           format="delete"
-          onClick={onClickDeleteShop}/>
+          onClick={onClickDeleteShop}/> */}
       </div>
       <div className={styles.shopCardContainer}>
         {
-          items?.items && items?.items.map((item, i) =><ItemCard key={item.id} {...item}/>)
+          items?.items && items?.items.map((item, i) =><ItemCard key={`${item.id}--${i}`} {...item}/>)
         }
       </div>
 
       <NewItemForm
-        closeModal={setIsItemModalOpen}
+        setIsModalOpen={setIsItemModalOpen}
         isModalOpen={isItemModalOpen}
         userData={props}
       />

@@ -17,6 +17,30 @@ export const getUser = /* GraphQL */ `
           userShopsId
           owner
           __typename
+          items {
+            items {
+              id
+              ingrediances
+              locationItemsId
+              name
+              orderItemsId
+              owner
+              shopItemsId
+              shopName
+              sizes {
+                id
+                name
+                price
+              }
+              images {
+                id
+                itemId
+                name
+                shopId
+                src
+              }
+            }
+          }
         }
         nextToken
         __typename

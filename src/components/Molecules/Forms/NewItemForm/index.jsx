@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch } from "react-redux";
 import styles from './NewItemForm.module.scss';
 
 import { TextInput } from 'components/Atoms/Inputs';
@@ -8,7 +7,8 @@ import { Button } from 'components/Atoms/Buttons';
 import { Modal } from 'components/Molecules/Modal';
 import ImageUploader from 'components/Molecules/ImageUploader';
 
-// import { setAddItem } from "../../../../slices/userSlice";
+import { useDispatch } from "react-redux";
+import { setAddItem } from "slices/userSlice";
 
 export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     const dispatch = useDispatch();
@@ -84,7 +84,7 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
             images: addItemIdIntoImage,
             sizes: itemSize
         }
-        // dispatch(setAddItem(inputConver))
+        dispatch(setAddItem(inputConver))
 
         clearInputs()
     }

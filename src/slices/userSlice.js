@@ -97,14 +97,16 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
 }
 
 export const fetchShopState = ( shopId ) => async(dispatch) => {
-  await API.graphql({ 
+  const fetchValue = await API.graphql({ 
     query: getShop,
     variables: { id: shopId }
   }).then(response => {
-    console.log('fetchUserState-response-->: ', response.data)
+    console.log('fetchShopState-response-->: ', response.data.getShop)
     return response.data.getShop
   })
   .catch(err => console.log('fetchUserState-err--> ', err))
+
+  return fetchValue
 }
 
 export const setAddShop = ( inputConver ) => async(dispatch) => {

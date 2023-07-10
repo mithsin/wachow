@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { fetchShopState } from "slices/userSlice";
@@ -8,22 +8,32 @@ import { fetchShopState } from "slices/userSlice";
 
 export const Shop = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { shopId } = useParams();
   const [ shopState, setShopState ] = useState({})
   useEffect(()=> {
-    dispatch(fetchShopState(shopId))
-      .then(res => console.log('shop-res-->: ', res))
-      .catch(error => console.log('shop-error-->: ', error))
+    getShopData()
   },[])
 
-  console.log(props)
+  const getShopData = async() => {
+    await dispatch(fetchShopState(shopId))
+      .then(res => 
+        res 
+          ? setShopState(res)
+          : navigate('/')
+        )
+  }
+
   console.log('shopId-->: ', shopId)
+  console.log('shopState->: ', shopState)
 
   
 
-  return (
+  return shopState === null ? <div>loading</div> : (
     <div>
-      <h1>Shop page</h1>
+      <h1>{shopState.shopName}</h1>
+
     </div>
   )
 }
