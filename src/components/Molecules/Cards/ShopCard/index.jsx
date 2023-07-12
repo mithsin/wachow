@@ -15,14 +15,15 @@ export const ShopCard = (props) => {
     id, 
     shopName,
     description,
-    items
+    items,
+    isSellerPage
   } = props;
   // console.log('ShopCard-props-->: ', props)
 
   // const onClickDeleteShop = async() => {
   //   dispatch(setDeleteShopSlice(id))
   // }
-
+  console.log('items?.items?.length-->: ', items?.items?.length)
   return(
     <div className={styles.shopCardWrap}>
       <h2>{shopName}</h2>
@@ -38,7 +39,9 @@ export const ShopCard = (props) => {
       </div>
       <div className={styles.shopCardContainer}>
         {
-          items?.items && items?.items.map((item, i) =><ItemCard key={`${item.id}--${i}`} {...item}/>)
+          items?.items?.length > 0 
+           ? items?.items?.map((item, i) =><ItemCard key={`${item.id}--${i}`} {...item} isSellerPage={isSellerPage}/>)
+           : null
         }
       </div>
 

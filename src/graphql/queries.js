@@ -206,6 +206,18 @@ export const getShop = /* GraphQL */ `
           orderItemsId
           locationItemsId
           owner
+          sizes {
+            id
+            name
+            price
+          }
+          images {
+            id
+            itemId
+            name
+            shopId
+            src
+          }
           __typename
         }
         nextToken

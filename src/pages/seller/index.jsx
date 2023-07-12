@@ -11,7 +11,7 @@ export const Seller = (props) => {
   const userState = useSelector(userInfo)
   const [ isNewShop, setIsNewShop ] = useState(false)
 
-  console.log('Seller-userState--->: ', userState)
+  // console.log('Seller-userState--->: ', userState)
   const {
     firstName="",
     lastName="",
@@ -22,7 +22,7 @@ export const Seller = (props) => {
       <h1>Seller page</h1>
       <h1>{firstName ?? ''} {lastName ?? ''}</h1>
       {shops?.items?.length > 0
-        ? shops?.items?.map(shop => <ShopCard key={shop.id} {...shop}/>)
+        ? shops?.items?.map(shop => <ShopCard key={shop.id} {...shop} isSellerPage={true}/>)
         : <div className={styles.addShopButton}><Button onClick={()=>setIsNewShop(!isNewShop)} label="ADD SHOP"/></div>
       }
       {

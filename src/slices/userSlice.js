@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from 'aws-amplify';
-import { getUser, getShop } from 'graphql/queries';
-import { createShop, deleteShop, createItem, deleteItem } from 'graphql/mutations'
+import { getUser, getShop, getItem, listItems } from 'graphql/queries';
+import { createShop, deleteShop, createItem, updateItem, deleteItem } from 'graphql/mutations'
 
 const initialState = {
   authState: false,
@@ -146,6 +146,19 @@ export const setDeleteShopSlice = ( id ) => async(dispatch) => {
   .catch(err=> console.log('err-->: ', err));
 }
 
+export const fetchItemState = ( itemId ) => async(dispatch) => {
+  const fetchValue = await API.graphql({ 
+    query: getItem,
+    variables: { id: itemId }
+  }).then(response => {
+    console.log('fetchItemState-response-->: ', response.data.getItem)
+    return response.data.getItem
+  })
+  .catch(err => console.log('fetchUserState-err--> ', err))
+
+  return fetchValue
+}
+
 export const setAddItem = ( inputConver ) => async(dispatch) => {
   console.log('setAddItem-inputConver-->: ', inputConver)
  
@@ -156,6 +169,20 @@ export const setAddItem = ( inputConver ) => async(dispatch) => {
     console.log('setAddItem-response-->: ', response.data.createItem)
     dispatch(setUpdateTrigger(true));
     return response.data.createItem
+  })
+  .catch(err => console.log('Seller-err--> ', err))
+}
+
+export const setUpdateItem = ( inputConver ) => async(dispatch) => {
+  console.log('setUpdateItem-inputConver-->: ', inputConver)
+
+  await API.graphql({ 
+    query: updateItem,
+    variables: {input : inputConver}
+  }).then(response => {
+    console.log('setUpdateItem-response-->: ', response.data.createItem)
+    dispatch(setUpdateTrigger(true));
+    return response.data.updateItem
   })
   .catch(err => console.log('Seller-err--> ', err))
 }
@@ -172,6 +199,23 @@ export const setDeleteItem = ( id ) => async(dispatch) => {
     return response.data.deleteItem
   })
   .catch(err => console.log('Seller-err--> ', err))
+}
+
+export const fetchMultipleItemsState = () => async(dispatch) => {
+  const fetchValue = await API.graphql({ 
+    query: listItems,
+    variables: {
+      // $filter
+      // $limit
+      // $nextToken
+    }
+  }).then(response => {
+    console.log('fetchMultipleItemsState-response-->: ', response.data.listItems)
+    return response.data.listItems
+  })
+  .catch(err => console.log('fetchUserState-err--> ', err))
+
+  return fetchValue
 }
 
 export const userInfo = state => state.userState;
