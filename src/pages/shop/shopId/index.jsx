@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { fetchShopState } from "slices/userSlice";
+import { fetchShopPublicState } from "slices/userSlice";
 
 import { ShopCard } from 'components/Molecules/Cards'
 
@@ -18,12 +18,8 @@ export const Shop = (props) => {
   },[])
 
   const getShopData = async() => {
-    await dispatch(fetchShopState(shopId))
-      .then(res => 
-        res 
-          ? setShopState(res)
-          : navigate('/')
-        )
+    await dispatch(fetchShopPublicState(shopId))
+      .then(res => setShopState(res))
   }
 
   // console.log('shopId-->: ', shopId)
@@ -33,7 +29,7 @@ export const Shop = (props) => {
 
   return shopState === null ? <div>loading</div> : (
     <div>
-      <h1>{shopState.shopName}</h1>
+      <h1>{shopState?.shopName}</h1>
       <ShopCard {...shopState} isSellerPage={false}/>
     </div>
   )

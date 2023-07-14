@@ -87,7 +87,7 @@ export const ItemCard = (props) => {
             <HeartIcon size="1x" className={styles.heartIcon}/>
           </div>
         </div>
-        { isUpdateItemOpen &&
+        { isSellerPage && isUpdateItemOpen &&
           <UpdateItemForm 
             setIsModalOpen = {setIsUpdateItemOpen}
             isModalOpen = {isUpdateItemOpen}

@@ -23,7 +23,7 @@ export const ShopCard = (props) => {
   // const onClickDeleteShop = async() => {
   //   dispatch(setDeleteShopSlice(id))
   // }
-  console.log('items?.items?.length-->: ', items?.items?.length)
+
   return(
     <div className={styles.shopCardWrap}>
       <h2>{shopName}</h2>

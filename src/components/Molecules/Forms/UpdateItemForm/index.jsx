@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './UpdateItemForm.module.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 import { TextInput } from 'components/Atoms/Inputs';
 import { Button } from 'components/Atoms/Buttons';
@@ -41,7 +42,9 @@ export const UpdateItemForm = ({
     useEffect(()=>{
         if(imageURL){
             const newImage = {
-                name: imageInfo?.value, 
+                id: uuidv4(), 
+                itemId: shopItemsId, 
+                name: imageInfo?.value ? imageInfo?.value : `image-${uuidv4()}`,
                 src: imageURL
             }
             setItemInput({
@@ -78,9 +81,14 @@ export const UpdateItemForm = ({
             name: "Regular", 
             price: "0"
         }])
+        setImageURL('')
+        setImageInfo({
+            name: "images",
+            value: ""
+        })
     };
 
-    const onClickCreateShop = async() => {
+    const onClickUpdateItem = async() => {
         
         const addItemIdIntoImage = itemInput?.images 
             ? itemInput?.images.map(image => {
@@ -99,6 +107,12 @@ export const UpdateItemForm = ({
         dispatch(setUpdateItem(inputConver))
         setIsModalOpen(!isModalOpen)
         // clearInputs()
+    }
+
+    const onImageDelete = (e) => {
+        console.log('e-->: ', e.target)
+        // itemInput, setItemInput
+
     }
 
     const inputSettings = [
@@ -139,7 +153,11 @@ export const UpdateItemForm = ({
             <div className={styles['outter-block']}> 
                 <div className={styles['inner-block']}>
                     <div className={styles['formWrapper']}>
-                        <ImageUploader setImageURL={setImageURL} setImageInfo={setImageInfo}/>
+                        <ImageUploader 
+                            setImageURL={setImageURL}
+                            setImageInfo={setImageInfo}
+                            inputState={itemInput}
+                            setInputState={setItemInput}/>
                             {
                                 inputSettings.map((inputSetting)=>
                                     <TextInput 
@@ -164,7 +182,7 @@ export const UpdateItemForm = ({
                             <div className={styles['formButtonWrapper']}>
                                 <Button
                                     label="SUBMIT" 
-                                    onClick={ onClickCreateShop }
+                                    onClick={ onClickUpdateItem }
                                 />
                                 <Button 
                                     format="reset"
@@ -226,3 +244,33 @@ export default UpdateItemForm;
 //     ],
 //     "images": []
 // }
+
+
+// const updateMock = {
+//     id: "1b43f4a2-4eb1-4d38-93ea-df0675dbf04e",
+//     name: "hamburger",
+//     ingrediances: "meat and stuff",
+//     images: [
+//         {
+//             name: "image-3a589525-3597-40dc-87b2-b53d7bc11309",
+//             src: "https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg"
+//         }
+//     ],
+//     sizes: [
+//         {
+//             id: "c60930cb-1fa1-4eee-a857-72c5122bf8cb",
+//             name: "Regular",
+//             price: "17.55"
+//         }
+//     ]
+// }
+
+// const updateWorkingMock = {
+//     id: "1b43f4a2-4eb1-4d38-93ea-df0675dbf04e", 
+//     name: "hamburger", 
+//     ingrediances: "meat and stuff", 
+//     sizes: [{
+//         id: "c60930cb-1fa1-4eee-a857-72c5122bf8cb", 
+//         name: "Regular", 
+//         price: "17.55"}
+//     ]}

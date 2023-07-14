@@ -1,29 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { TextInput } from 'components/Atoms/Inputs'
+import { Button } from 'components/Atoms/Buttons'
 import styles from "./ImageUploader.module.scss";
 import axios from 'axios';
 
-import { Button } from 'components/Atoms/Buttons'
-import { TextInput } from 'components/Atoms/Inputs'
-import { XMarkIcon } from 'components/Atoms/Icons';
-
-
 const ImageUploader = ({
     setImageURL=()=>{}, 
-    setImageInfo=()=>{},
-    inputState,
-    setInputState=()=>{}
+    setImageInfo=()=>{}
 }) => {
     const [image, setImage] = useState('');
     const [inputURL, setInputURL] = useState('');
     const [loading, setLoading] = useState(false);
-
-    const onImageDelete = (id) => {
-        const updateList = inputState?.images?.filter(image => image?.id !== id)
-        setInputState({
-            ...inputState,
-            images: updateList
-        })
-    }
 
     const uploadImage = e => {
         const files = e.target.files[0];
@@ -57,6 +44,10 @@ const ImageUploader = ({
             .catch(err=> console.log(err))
     }
 
+    const onInputUrlChange = (e) => {
+        setInputURL(e.target.value)
+    }
+
     const onSubmitInputURL = () => {
         setImage(inputURL)
         setImageURL(inputURL)
@@ -85,26 +76,12 @@ return (
                 onChange={ uploadImage } 
             />
         </div>
-        <div>            
-            {
-                loading ? (
-                    <h2>Loading image...</h2>
-                ): (
-                    <img src={ image } alt={ image } style={{ width: "100px" }} />
-                )
-            }
-        </div>
-        {inputState?.images?.length > 0 && 
-            <div className={styles.imagesListBlock}>
-                {inputState?.images?.map((image) => 
-                    <span key={image?.id} className={styles.imageListItem}>
-                        <img src={image.src} id={image.id} alt={`${mage.id}`} className={styles.imageStyle}/>
-                        <span id={image.id} onClick={()=>onImageDelete(image.id)} className={styles.iconWrap} >
-                            <XMarkIcon size="1x" className={styles.iconStyle}/>
-                        </span>
-                    </span>
-                )}
-            </div>
+        {
+            loading ? (
+                <h2>Loading image...</h2>
+            ): (
+                <img src={ image } alt={ image } style={{ width: "100px" }} />
+            )
         }
     </div>
 )};

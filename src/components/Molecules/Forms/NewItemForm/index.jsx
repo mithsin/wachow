@@ -25,8 +25,8 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
         if(imageURL){
             const newImage = {
                 id: uuidv4(), 
-                itemId: "", 
-                name: imageInfo?.value, 
+                itemId: userData?.shopItemsId ?? null, 
+                name: imageInfo?.value ? imageInfo?.value : `image-${uuidv4()}`, 
                 src: imageURL
             }
             setItemInput({
@@ -64,9 +64,14 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
             name: "Regular", 
             price: "0"
         }])
+        setImageURL('')
+        setImageInfo({
+            name: "images",
+            value: ""
+        })
     };
 
-    const onClickCreateShop = async() => {
+    const onClickCreateItem = async() => {
         
         const newId = uuidv4();
         const addItemIdIntoImage = itemInput?.images 
@@ -85,7 +90,7 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
             sizes: itemSize
         }
         dispatch(setAddItem(inputConver))
-
+        setIsModalOpen(!isModalOpen)
         clearInputs()
     }
 
@@ -127,7 +132,11 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
             <div className={styles['outter-block']}> 
                 <div className={styles['inner-block']}>
                     <div className={styles['formWrapper']}>
-                        <ImageUploader setImageURL={setImageURL} setImageInfo={setImageInfo}/>
+                        <ImageUploader 
+                            setImageURL={setImageURL}
+                            setImageInfo={setImageInfo}
+                            inputState={itemInput}
+                            setInputState={setItemInput}/>
                             {
                                 inputSettings.map((inputSetting)=>
                                     <TextInput 
@@ -152,7 +161,7 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
                             <div className={styles['formButtonWrapper']}>
                                 <Button
                                     label="SUBMIT" 
-                                    onClick={ onClickCreateShop }
+                                    onClick={ onClickCreateItem }
                                 />
                                 <Button 
                                     format="reset"

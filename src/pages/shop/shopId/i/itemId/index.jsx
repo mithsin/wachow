@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { fetchItemState } from "slices/userSlice";
+import { fetchItemPublicState } from "slices/userSlice";
 
 import { ItemCard } from 'components/Molecules/Cards/ItemCard';
 
@@ -18,18 +18,14 @@ export const ShopItem = () => {
   },[])
 
   const getItemData = async() => {
-    await dispatch(fetchItemState(itemId))
-      .then(res => 
-        res 
-          ? setItemState(res)
-          : navigate('/')
-        )
+    await dispatch(fetchItemPublicState(itemId))
+      .then(res => setItemState(res))
   }
 
   // console.log('shopId-->: ', itemId)
   console.log('itemState-->: ', itemState)
 
-  return (
+  return itemState  === null ? <div>loading</div> : (
     <div>
       <h1>Item Page</h1>
       <ItemCard {...itemState}/>
@@ -38,3 +34,31 @@ export const ShopItem = () => {
 }
 
 
+// const mockData = {
+//   "id": "1349c927-62a6-40bf-a2c7-dda93ffb4ac1",
+//   "shopName": "Wacho Shop",
+//   "name": "dragon fire",
+//   "images": [
+//       {
+//           "id": "febba186-4a58-4479-8159-17e01fb50a1c",
+//           "name": "logo192.png",
+//           "src": "https://res.cloudinary.com/paf1david/image/upload/c_scale,w_780,ar_1:1,c_fill/v1688997527/pafpay/drmygkceorxjojksmf5u.png",
+//           "shopId": null,
+//           "itemId": "1349c927-62a6-40bf-a2c7-dda93ffb4ac1",
+//           "__typename": "Images"
+//       }
+//   ],
+//   "sizes": [
+//       {
+//           "id": "e0e0305b-cd12-47e3-a21d-35c3c19b9c67",
+//           "name": "Regular",
+//           "price": "12.55",
+//           "__typename": "Size"
+//       }
+//   ],
+//   "ingrediances": "a slice of dragon fire",
+//   "shopItemsId": "ac43b063-299a-4301-b1ed-918658c42d3a",
+//   "orderItemsId": null,
+//   "locationItemsId": null,
+//   "__typename": "Item"
+// }
