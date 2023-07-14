@@ -231,84 +231,6 @@ export const getShop = /* GraphQL */ `
     }
   }
 `;
-export const getShopPublic = /* GraphQL */ `
-  query GetShop($id: ID!) {
-    getShop(id: $id) {
-      id
-      phone
-      email
-      description
-      shopName
-      pickUpLocation {
-        id
-        street
-        city
-        state
-        zipCode
-        calendar {
-          id
-          title
-          description
-          attendees
-          startDate
-          endDate
-          __typename
-        }
-        __typename
-      }
-      images {
-        id
-        name
-        src
-        shopId
-        itemId
-        __typename
-      }
-      menu {
-        id
-        description
-        title
-        categories {
-          id
-          categoryName
-          items
-          __typename
-        }
-        __typename
-      }
-      items {
-        items {
-          id
-          shopName
-          name
-          ingrediances
-          createdAt
-          updatedAt
-          shopItemsId
-          orderItemsId
-          locationItemsId
-          owner
-          sizes {
-            id
-            name
-            price
-          }
-          images {
-            id
-            itemId
-            name
-            shopId
-            src
-          }
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      __typename
-    }
-  }
-`;
 export const listShops = /* GraphQL */ `
   query ListShops(
     $filter: ModelShopFilterInput
@@ -450,34 +372,6 @@ export const getItem = /* GraphQL */ `
       orderItemsId
       locationItemsId
       owner
-      __typename
-    }
-  }
-`;
-export const getItemPublic = /* GraphQL */ `
-  query GetItem($id: ID!) {
-    getItem(id: $id) {
-      id
-      shopName
-      name
-      images {
-        id
-        name
-        src
-        shopId
-        itemId
-        __typename
-      }
-      sizes {
-        id
-        name
-        price
-        __typename
-      }
-      ingrediances
-      shopItemsId
-      orderItemsId
-      locationItemsId
       __typename
     }
   }

@@ -23,11 +23,11 @@ export const HeaderFooterTemplate = ({
 // console.log('HeaderFooterTemplate-userState-->: ', userState)
 
 useEffect(()=>{
-  console.log('HeaderFooterTemplate-user-->: ', user)
-  console.log('HeaderFooterTemplate-user.username-->: ', user?.username)
-  console.log('useEffect-isUpdated---> ', isUpdated)
+  // console.log('HeaderFooterTemplate-user-->: ', user)
+  // console.log('HeaderFooterTemplate-user.username-->: ', user?.username)
+  // console.log('useEffect-isUpdated---> ', isUpdated)
   if(isUpdated){
-    console.log('fetch info')
+    // console.log('fetch info')
     dispatch(fetchUserState(user.username))
   }
 },[isUpdated])

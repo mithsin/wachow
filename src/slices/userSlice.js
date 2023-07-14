@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from 'aws-amplify';
-import { getUser, getShop } from 'graphql/queries';
-import { createShop, deleteShop, createItem, deleteItem } from 'graphql/mutations'
+import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
+import { getUser, getShop, getItem, listItems, getShopPublic, getItemPublic } from 'graphql/queries';
+import { createShop, deleteShop, createItem, updateItem, deleteItem } from 'graphql/mutations'
 
 const initialState = {
   authState: false,
@@ -89,7 +90,7 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
     query: getUser,
     variables: { id: userId }
   }).then(response => {
-    console.log('fetchUserState-response-->: ', response.data)
+    // console.log('fetchUserState-response-->: ', response.data)
     dispatch(setUserInfo(response.data.getUser));
     dispatch(setUpdateTrigger(false));
   })
@@ -97,14 +98,29 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
 }
 
 export const fetchShopState = ( shopId ) => async(dispatch) => {
-  await API.graphql({ 
+  const fetchValue = await API.graphql({ 
     query: getShop,
     variables: { id: shopId }
   }).then(response => {
-    console.log('fetchUserState-response-->: ', response.data)
+    console.log('fetchShopState-response-->: ', response.data.getShop)
     return response.data.getShop
   })
-  .catch(err => console.log('fetchUserState-err--> ', err))
+  .catch(err => console.log('fetchShopState-err--> ', err))
+
+  return fetchValue
+}
+export const fetchShopPublicState = ( shopId ) => async(dispatch) => {
+  const fetchValue = await API.graphql({ 
+    query: getShopPublic,
+    variables: { id: shopId },
+    authMode: GRAPHQL_AUTH_MODE.API_KEY
+  }).then(response => {
+    console.log('fetchShopPublicState-response-->: ', response)
+    return response.data.getShop
+  })
+  .catch(err => console.log('fetchShopState-err--> ', err))
+
+  return fetchValue
 }
 
 export const setAddShop = ( inputConver ) => async(dispatch) => {
@@ -127,7 +143,7 @@ export const setAddShop = ( inputConver ) => async(dispatch) => {
     }));
     dispatch(setUpdateTrigger(true));
   })
-  .catch(err => console.log('Seller-err--> ', err))
+  .catch(err => console.log('createShop-err--> ', err))
 }
 
 export const setDeleteShopSlice = ( id ) => async(dispatch) => {
@@ -141,7 +157,34 @@ export const setDeleteShopSlice = ( id ) => async(dispatch) => {
     dispatch(setDeleteShop())
     dispatch(setUpdateTrigger(true));
   })
-  .catch(err=> console.log('err-->: ', err));
+  .catch(err=> console.log('deleteShop-err-->: ', err));
+}
+
+export const fetchItemState = ( itemId ) => async(dispatch) => {
+  const fetchValue = await API.graphql({ 
+    query: getItem,
+    variables: { id: itemId }
+  }).then(response => {
+    console.log('fetchItemState-response-->: ', response)
+    return response.data.getItem
+  })
+  .catch(err => console.log('fetchItemState-err--> ', err))
+
+  return fetchValue
+}
+
+export const fetchItemPublicState = ( itemId ) => async(dispatch) => {
+  const fetchValue = await API.graphql({ 
+    query: getItemPublic,
+    variables: { id: itemId },
+    authMode: GRAPHQL_AUTH_MODE.API_KEY
+  }).then(response => {
+    console.log('fetchItemPublicState-response-->: ', response)
+    return response.data.getItem
+  })
+  .catch(err => console.log('fetchItemPublicState-err--> ', err))
+
+  return fetchValue
 }
 
 export const setAddItem = ( inputConver ) => async(dispatch) => {
@@ -155,7 +198,21 @@ export const setAddItem = ( inputConver ) => async(dispatch) => {
     dispatch(setUpdateTrigger(true));
     return response.data.createItem
   })
-  .catch(err => console.log('Seller-err--> ', err))
+  .catch(err => console.log('setAddItem-err--> ', err))
+}
+
+export const setUpdateItem = ( inputConver ) => async(dispatch) => {
+  console.log('setUpdateItem-inputConver-->: ', inputConver)
+
+  await API.graphql({ 
+    query: updateItem,
+    variables: {input : inputConver}
+  }).then(response => {
+    console.log('setUpdateItem-response-->: ', response.data.createItem)
+    dispatch(setUpdateTrigger(true));
+    return response.data.updateItem
+  })
+  .catch(err => console.log('setUpdateItem-err--> ', err))
 }
 
 export const setDeleteItem = ( id ) => async(dispatch) => {
@@ -169,7 +226,21 @@ export const setDeleteItem = ( id ) => async(dispatch) => {
     dispatch(setUpdateTrigger(true));
     return response.data.deleteItem
   })
-  .catch(err => console.log('Seller-err--> ', err))
+  .catch(err => console.log('setAddItem-err--> ', err))
+}
+
+export const fetchMultipleItemsState = (limit) => async(dispatch) => {
+  const fetchValue = await API.graphql({ 
+    query: listItems,
+    variables: {limit: limit},
+    authMode: GRAPHQL_AUTH_MODE.API_KEY
+  }).then(response => {
+    console.log('fetchMultipleItemsState-response-->: ', response.data.listItems)
+    return response.data.listItems.items
+  })
+  .catch(err => console.log('fetchMultipleItemsState-err--> ', err))
+
+  return fetchValue
 }
 
 export const userInfo = state => state.userState;

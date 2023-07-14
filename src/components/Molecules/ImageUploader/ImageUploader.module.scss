@@ -8,3 +8,29 @@
     display: flex;
     align-items: center;
 }
+
+.imagesListBlock {
+    background-color: rgb(151, 151, 151);
+}
+
+.imageListItem {
+    position: relative;
+    padding-right: 8px;
+}
+
+.imageStyle {
+    width: 100px;
+}
+
+.iconWrap {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    background-color: #ffffff28;
+    border-radius: 16px;
+    border: 1px solid black;
+}
+
+.iconStyle {
+    color: #ff0000;
+}

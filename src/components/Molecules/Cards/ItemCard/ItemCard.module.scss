@@ -82,11 +82,18 @@
     font-weight: 600;
     font-size: 20px;
     margin-bottom: 4px;
+    text-align: left;
+}
+
+.itemTitleSpan {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
 }
 
 .priceWrapper {
     margin-bottom: 4px;
-    
+    text-align: left;
 }
 
 .priceText {
