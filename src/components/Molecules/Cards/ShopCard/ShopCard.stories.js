@@ -1,6 +1,7 @@
+import { BrowserRouter } from 'react-router-dom'
 import { ShopCard } from './index.jsx';
 import { Provider } from 'react-redux';
-import { store } from "../../../../store/store";
+import { store } from "store/store";
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'components/Molecules/Cards/ShopCard',
@@ -50,9 +51,11 @@ const Template = (props) => {
     }
 }
   return(
-    <Provider store={store}>
-      <ShopCard {...userData}/>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <ShopCard {...userData}/>
+      </Provider>
+    </BrowserRouter>
   )
 }
 

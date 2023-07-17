@@ -1,3 +1,4 @@
+import React from 'react';
 import { NewItemForm } from './index';
 import { Provider } from 'react-redux';
 import { store } from "store/store";
