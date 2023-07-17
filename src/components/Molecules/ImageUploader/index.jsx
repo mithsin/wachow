@@ -98,7 +98,7 @@ return (
             <div className={styles.imagesListBlock}>
                 {inputState?.images?.map((image) => 
                     <span key={image?.id} className={styles.imageListItem}>
-                        <img src={image.src} id={image.id} alt={`${mage.id}`} className={styles.imageStyle}/>
+                        <img src={image.src} id={image.id} alt={`${image.id}`} className={styles.imageStyle}/>
                         <span id={image.id} onClick={()=>onImageDelete(image.id)} className={styles.iconWrap} >
                             <XMarkIcon size="1x" className={styles.iconStyle}/>
                         </span>
