@@ -1,16 +1,25 @@
 import React from 'react';
 import { HeaderDropDown } from './index';
-// import { Provider } from 'react-redux';
-import { Authenticator } from "@aws-amplify/ui-react";
-import {  persistor, store } from "store/store";
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from "store/store";
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Components/Templates/components/HeaderDropDown',
+  title: 'components/Molecules/HeaderDropDown',
   component: HeaderDropDown,
   tags: ['autodocs'],
-  argTypes: {
-  },
+  argTypes: {},
+  decorators: [
+    (Story) => (
+      <BrowserRouter>
+        <Provider store={store}>
+          <Story />
+        </Provider>
+      </BrowserRouter>
+    )
+  ]
 };
 
 export default meta;

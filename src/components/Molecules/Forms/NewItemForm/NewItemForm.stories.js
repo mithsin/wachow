@@ -1,17 +1,21 @@
 import React from 'react';
-import { NewItemForm } from './index';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from "store/store";
+
+import { NewItemForm } from './index';
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Components/Form/NewItemForm',
+  title: 'components/Molecules/Forms/NewItemForm',
   component: NewItemForm,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Provider store={store}>
-        <Story />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Story />
+        </Provider>
+      </BrowserRouter>
     )
   ]
 };
@@ -19,46 +23,60 @@ const meta = {
 export default meta;
 
 const Template = (props) => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(true);
   const userData = {
-    "id": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
-    "phone": null,
+    "id": "c13db49d-ae22-4258-9844-878083fdbf81",
+    "phone": "7894561320",
     "email": null,
     "description": null,
-    "shopName": "2200FirstShop",
-    "createdAt": "2023-06-22T17:33:40.103Z",
-    "updatedAt": "2023-06-22T17:33:40.103Z",
-    "userShopsId": "e448c4b8-90d1-70fb-c3ce-6d03e7901524",
-    "owner": "e448c4b8-90d1-70fb-c3ce-6d03e7901524",
+    "shopName": "hbm shop",
+    "createdAt": "2023-07-12T15:13:37.736Z",
+    "updatedAt": "2023-07-12T15:13:37.736Z",
+    "userShopsId": "248894a8-b051-7069-879b-1e98700a5486",
+    "owner": "248894a8-b051-7069-879b-1e98700a5486",
+    "__typename": "Shop",
     "items": {
         "items": [
             {
-                "id": "78ef7e21-b6e9-4a77-b4f1-85261a444d4f",
-                "shopName": "2200FirstShop",
-                "name": "test",
-                "ingrediances": "pie",
-                "createdAt": "2023-06-23T20:03:00.382Z",
-                "updatedAt": "2023-06-23T20:03:00.382Z",
-                "shopItemsId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
-                "owner": "e448c4b8-90d1-70fb-c3ce-6d03e7901524"
-            },
-            {
-                "id": "9d62dbb6-202a-4dbf-a9e1-9a55f345f32e",
-                "shopName": "2200FirstShop",
-                "name": "pie",
-                "ingrediances": "chart",
-                "createdAt": "2023-06-23T20:18:33.816Z",
-                "updatedAt": "2023-06-23T20:18:33.816Z",
-                "shopItemsId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
-                "owner": "e448c4b8-90d1-70fb-c3ce-6d03e7901524"
+                "id": "1b43f4a2-4eb1-4d38-93ea-df0675dbf04e",
+                "ingrediances": "meat and stuff",
+                "locationItemsId": null,
+                "name": "hamburger",
+                "orderItemsId": null,
+                "owner": "248894a8-b051-7069-879b-1e98700a5486",
+                "shopItemsId": "c13db49d-ae22-4258-9844-878083fdbf81",
+                "shopName": "hbm shop",
+                "sizes": [
+                    {
+                        "id": "c60930cb-1fa1-4eee-a857-72c5122bf8cb",
+                        "name": "Regular",
+                        "price": "17.55"
+                    }
+                ],
+                "images": [
+                    {
+                        "id": "7c601700-c46d-4b74-b91b-3131241ee1cc",
+                        "itemId": "c13db49d-ae22-4258-9844-878083fdbf81",
+                        "name": "image-f8894eb0-3c46-4884-a4eb-64c3921388d5",
+                        "shopId": null,
+                        "src": "https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg"
+                    },
+                    {
+                        "id": "555007c7-c01e-44e1-9dc3-79e3bd56645e",
+                        "itemId": "c13db49d-ae22-4258-9844-878083fdbf81",
+                        "name": "image-d50c91e1-ddfe-4bcb-8519-9a624c3eb60d",
+                        "shopId": null,
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqSvNZfQIV9FKVAuag9X_dWQfA95pdYQhosQPpnGL_39Br7Jv1Mp6JAIbHZAkYt8jMNlk"
+                    }
+                ]
             }
-        ],
-        "nextToken": null
-    }
+        ]
+    },
+    "isSellerPage": true
 }
   return(
     <NewItemForm 
-      closeModal={setIsModalOpen}
+      setIsModalOpen={setIsModalOpen}
       isModalOpen={isModalOpen}
       userData={userData}
     />

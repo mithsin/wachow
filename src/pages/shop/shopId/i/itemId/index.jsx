@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchItemPublicState } from "slices/userSlice";
 
-import { ItemCard } from 'components/Molecules/Cards/ItemCard';
+import { ItemDisplaySection } from 'components/Organisms';
 
 
 export const ShopItem = () => {
@@ -28,7 +28,7 @@ export const ShopItem = () => {
   return itemState  === null ? <div>loading</div> : (
     <div>
       <h1>Item Page</h1>
-      <ItemCard {...itemState}/>
+      <ItemDisplaySection {...itemState}/>
     </div>
   )
 }
