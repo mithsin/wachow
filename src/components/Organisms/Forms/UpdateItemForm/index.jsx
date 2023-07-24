@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { TextInput } from 'components/Atoms/Inputs';
 import { Button } from 'components/Atoms/Buttons';
 import { Modal } from 'components/Molecules/Modal';
+import { SizeInputField } from 'components/Molecules/FormComponents';
 import ImageUploader from 'components/Molecules/ImageUploader';
 
 import { useDispatch } from "react-redux";
@@ -61,20 +62,6 @@ export const UpdateItemForm = ({
         })
     };
 
-    const formInputSizeChange = (e) => {
-        const checkDollar = /^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/;
-        const dollar = (e.target.name === "price") && !e.target.value ? 0 : e.target.value;
-        if((e.target.name === "price" && checkDollar.test(dollar)) || e.target.name === "name"){
-            const updateSizeInput = (
-                itemSize.map((item)=> {
-                    return {...item, [e.target.name] : e.target.value}
-                })
-            )
-    
-            setItemSize(updateSizeInput)
-        }
-    };
-
     const clearInputs = () => {
         setItemInput({})
         setItemSize([{
@@ -96,23 +83,19 @@ export const UpdateItemForm = ({
             }) 
             : [];
 
+        const removeEmptySize = itemSize.filter(size => !!size.name)
         const inputConver = {
             id: userData.id,
             name: itemInput?.name,
             ingrediances: itemInput?.ingrediances,
             images: addItemIdIntoImage,
-            sizes: itemSize
+            sizes: removeEmptySize
         }
 
+        // console.log('inputConver-->: ', inputConver)
         dispatch(setUpdateItem(inputConver))
         setIsModalOpen(!isModalOpen)
         // clearInputs()
-    }
-
-    const onImageDelete = (e) => {
-        console.log('e-->: ', e.target)
-        // itemInput, setItemInput
-
     }
 
     const inputSettings = [
@@ -128,20 +111,6 @@ export const UpdateItemForm = ({
             label: "ingrediances", 
             placeholder: "ingrediances",
             value: itemInput.ingrediances || ''
-        }
-    ];
-
-    const inputSizeSettings = [
-        {
-            type: "text",
-            name: "name", 
-            label: "size", 
-            placeholder: "size"
-        },{
-            type: "text",
-            name: "price", 
-            label: "price", 
-            placeholder: "price"
         }
     ];
 
@@ -167,17 +136,9 @@ export const UpdateItemForm = ({
                                 )
                             }
                             <div className={styles['sizeWrapper']}>
-                                {
-                                    inputSizeSettings.map((inputSizeSetting, i)=>{
-                                        const current = i%2 > 0 ? i - 1 : i;
-                                        return (
-                                            <TextInput 
-                                                key={inputSizeSetting.name} 
-                                                { ...inputSizeSetting }
-                                                value={itemSize[current][`${inputSizeSetting.name}`] ?? ''}
-                                                onChange={ formInputSizeChange } />
-                                    )})
-                                }
+                                <SizeInputField
+                                    itemSize={itemSize}
+                                    setItemSize={setItemSize} />
                             </div>
                             <div className={styles['formButtonWrapper']}>
                                 <Button

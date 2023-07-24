@@ -6,7 +6,7 @@ import { store } from "store/store";
 import { NewItemForm } from './index';
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'components/Molecules/Forms/NewItemForm',
+  title: 'components/Organisms/Forms/NewItemForm',
   component: NewItemForm,
   tags: ['autodocs'],
   decorators: [

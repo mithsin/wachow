@@ -20,7 +20,8 @@ export const ItemDisplaySection = (props) => {
     ingrediances, 
     reviews = [],
     shopItemsId,
-    isSellerPage
+    isSellerPage,
+    description
   } = props;
   const [isEdit, setIsEdit] = useState(false);
   const [isUpdateItemOpen, setIsUpdateItemOpen] = useState(false);
@@ -65,6 +66,11 @@ export const ItemDisplaySection = (props) => {
             <HeartIcon size="1x" className={styles.heartIcon}/>
           </div>
         </div>
+        {description && 
+          <div>
+            {description}
+          </div>
+        }
     </div>
   );
 }

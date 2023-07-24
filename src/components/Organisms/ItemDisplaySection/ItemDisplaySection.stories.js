@@ -32,10 +32,24 @@ const Template = (props) => {
     "updatedAt": "2023-06-23T20:03:00.382Z",
     "shopItemsId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
     "owner": "e448c4b8-90d1-70fb-c3ce-6d03e7901524",
-    "sizes": [{
-      "name": "regular",
-      "price": "12.15"
-    }],
+    "sizes": [
+      {
+        "id": "241b2bf9-f693-424c-b711-461bd3f91573",
+        "name": "Small",
+        "price": "3.15"
+      },
+      {
+          "id": "b06f970c-72b4-4bae-8635-44fe9692cd83",
+          "name": "M",
+          "price": "4.15"
+      },
+      {
+          "id": "8f23bac9-a18c-4f3a-ae18-38c34a329566",
+          "name": "L",
+          "price": "6.15"
+      }
+    ],
+    description: 'barbecue, an outdoor meal, usually a form of social entertainment, at which meats, fish, or fowl, along with vegetables, are roasted over a wood or charcoal fire. The term also denotes the grill or stone-lined pit for cooking such a meal, or the food itself, particularly the strips of meat.',
     "images": [{
       id: "image-id-ko2kjofkjsodfijio2ajsodkfjslfj2",
       name: "sea food fried rice",

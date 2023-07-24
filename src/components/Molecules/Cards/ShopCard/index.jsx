@@ -6,7 +6,7 @@ import { setDeleteShopSlice } from "slices/userSlice";
 
 import { Button } from 'components/Atoms/Buttons'
 import { ItemCard } from 'components/Molecules/Cards/ItemCard';
-import { NewItemForm } from 'components/Molecules/Forms/NewItemForm';
+import { NewItemForm } from 'components/Organisms/Forms/NewItemForm';
 
 export const ShopCard = (props) => {
   // const dispatch = useDispatch();

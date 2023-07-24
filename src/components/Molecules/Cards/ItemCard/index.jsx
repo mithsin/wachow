@@ -6,7 +6,7 @@ import { formatter } from 'utils/jsHelper';
 import styles from './ItemCard.module.scss';
 
 import { EllipsisVerticalIcon, StarIcon, HeartIcon } from 'components/Atoms/Icons';
-import { UpdateItemForm } from 'components/Molecules/Forms';
+import { UpdateItemForm } from 'components/Organisms/Forms';
 
 import "swiper/css";
 import "swiper/css/pagination";

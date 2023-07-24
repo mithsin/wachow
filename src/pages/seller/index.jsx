@@ -4,7 +4,7 @@ import { fetchUserState, userInfo, toggleUpdateTrigger } from "slices/userSlice"
 import styles from './Seller.module.scss';
 
 import { Button } from 'components/Atoms/Buttons'
-import { NewShopForm } from 'components/Molecules/Forms/NewShopForm' 
+import { NewShopForm } from 'components/Organisms/Forms/NewShopForm' 
 import { ShopCard } from 'components/Molecules/Cards'
 
 export const Seller = (props) => {
