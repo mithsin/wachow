@@ -54,6 +54,7 @@ type Item @model @auth(rules: [
   images: [Images]
   sizes: [Size]
   ingrediances: String
+  description: string
 }
 
 type Order @model @auth(rules: [

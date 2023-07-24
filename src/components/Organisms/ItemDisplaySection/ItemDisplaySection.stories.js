@@ -20,6 +20,10 @@ export default meta;
 
 const Template = (props) => {
   const userData = {
+    // check user like IDs for heart icon trigger
+  }
+
+  const itemData = {
     "id": "78ef7e21-b6e9-4a77-b4f1-85261a444d4f",
     "shopName": "2200FirstShop",
     "name": "test",
@@ -52,7 +56,7 @@ const Template = (props) => {
       src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD2M5z7bwh4MD222SynTaONmpFsLtMvdNwf3fi7Ki2BQ&usqp=CAU&ec=48665698"
     }]
 }
-  return( <ItemDisplaySection {...userData}/> )
+  return( <ItemDisplaySection {...itemData}/> )
 }
 
 export const Default = Template.bind({})
