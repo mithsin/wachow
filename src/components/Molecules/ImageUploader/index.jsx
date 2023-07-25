@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import styles from "./ImageUploader.module.scss";
 import axios from 'axios';
 
@@ -8,60 +9,59 @@ import { XMarkIcon } from 'components/Atoms/Icons';
 
 
 const ImageUploader = ({
-    setImageURL=()=>{}, 
-    setImageInfo=()=>{},
-    inputState,
-    setInputState=()=>{}
+    id,
+    imageListState=[],
+    setImageListState
 }) => {
     const [image, setImage] = useState('');
     const [inputURL, setInputURL] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const onImageDelete = (id) => {
-        const updateList = inputState?.images?.filter(image => image?.id !== id)
-        setInputState({
-            ...inputState,
-            images: updateList
-        })
-    }
-
-    const uploadImage = e => {
-        const files = e.target.files[0];
-        const formData = new FormData();
-        formData.append("upload_preset", "pafpay")
-        formData.append("file", files) 
-        setLoading(true);
-
-        // TODO: temp image set
-            // setImage(files.name)
-            // setImageURL(files.name)
-            // setLoading(false)
-            setImageInfo({
-                name: "images",
-                value: files.name
-            })
-
-        // TODO: setup cloudinary
-        axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData)
-            .then(res=> {
-                const resUrl = res.data.secure_url;
-                const formatURL = resUrl.split('/upload/');
-                const url780 = `${formatURL[0]}/upload/c_scale,w_780,ar_1:1,c_fill/${formatURL[1]}`
-                setImage(url780);
-                setImageURL(url780);
-            })
-            .then(res => {
-                console.log('image-upload-res-->: ', res)
-                setLoading(false)
-            })
-            .catch(err=> console.log(err))
-    }
-
     const onSubmitInputURL = () => {
-        setImage(inputURL)
-        setImageURL(inputURL)
-        setInputURL('')
+      const addNewImage = {
+          id: uuidv4(), 
+          itemId: id ?? null, 
+          name: `image-${uuidv4()}`, 
+          src: inputURL
+      }
+      setImageListState(imageListState.concat(addNewImage))
+      setInputURL('')
     }
+
+    const onImageDelete = (id) => {
+        const updateList = imageListState?.filter(image => image?.id !== id)
+        setImageListState(updateList)
+    }
+
+  const uploadImage = e => {
+    const files = e.target.files[0];
+    const formData = new FormData();
+    formData.append("upload_preset", "pafpay")
+    formData.append("file", files) 
+    setLoading(true);
+
+    // TODO: setup cloudinary
+  axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData)
+    .then(res=> {
+      const resUrl = res.data.secure_url;
+      const formatURL = resUrl.split('/upload/');
+      const url780 = `${formatURL[0]}/upload/c_scale,w_780,ar_1:1,c_fill/${formatURL[1]}`
+
+      const addNewImage = {
+        id: uuidv4(), 
+        itemId: id ?? null, 
+        name: files?.name ?? `image-${uuidv4()}`, 
+        src: url780
+      }
+      setImage(url780)
+      setImageListState(imageListState.concat(addNewImage))
+    })
+    .then(res => {
+        console.log('image-upload-res-->: ', res)
+        setLoading(false)
+    })
+    .catch(err=> console.log(err))
+}
 
 return (
     <div className={styles.dropbox}>
@@ -70,13 +70,12 @@ return (
                 <TextInput
                     label="URL"
                     value={inputURL}
-                    onChange={(e)=> setInputURL(e.target.value)}
-                />
-                <Button 
+                    onChange={(e)=> setInputURL(e.target.value)} />
+                <Button
+                    className={styles.buttonAlign}
                     disabled={!inputURL}
                     onClick={onSubmitInputURL}
-                    label="SUBMIT"
-                    />
+                    label="SUBMIT" />
             </div>
             <input
                 type="file"
@@ -94,9 +93,9 @@ return (
                 )
             }
         </div>
-        {inputState?.images?.length > 0 && 
+        {imageListState?.length > 0 && 
             <div className={styles.imagesListBlock}>
-                {inputState?.images?.map((image) => 
+                {imageListState?.map((image) => 
                     <span key={image?.id} className={styles.imageListItem}>
                         <img src={image.src} id={image.id} alt={`${image.id}`} className={styles.imageStyle}/>
                         <span id={image.id} onClick={()=>onImageDelete(image.id)} className={styles.iconWrap} >

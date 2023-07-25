@@ -12,6 +12,7 @@ interface ButtonProps extends ComponentPropsWithRef<'button'> {
 export const Button = ({
   label = "",
   onClick,
+  className,
   type = "button",
   format,
   bgColor = '',
@@ -33,7 +34,7 @@ export const Button = ({
     <button 
       type={type} 
       onClick={onClick} 
-      className={styles?.[buttonType]}
+      className={`${styles?.[buttonType]} ${className}`}
       style={inlineStyle}
       {...rest}>
         {label}

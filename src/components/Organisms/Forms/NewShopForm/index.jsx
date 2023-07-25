@@ -45,15 +45,19 @@ export const NewShopForm = ({setIsModalOpen, isModalOpen}) => {
             label: "Shop Name", 
             placeholder: "Shop Name",
             value: shopInput.shopName || ''
-        },
-        {
+        },{
             type: "text",
             name: "phone", 
             label: "Phone number", 
             placeholder: "example 9876543210",
             value: shopInput.phone || ''
-        },
-        {
+        },{
+            type: "text",
+            name: "email", 
+            label: "email", 
+            placeholder: "example abc@wachow.com",
+            value: shopInput.email || ''
+        },{
             type: "text",
             name: "description", 
             label: "description", 
@@ -98,3 +102,14 @@ export const NewShopForm = ({setIsModalOpen, isModalOpen}) => {
 }
 
 export default NewShopForm;
+
+
+// parantId: User @belongsTo
+// phone: String
+// email: String
+// description: String
+// shopName: String! 
+// pickUpLocation: [PickUpLocation]
+// images: [Images]
+// menu: Menu
+// items: [Item] @hasMany

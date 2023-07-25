@@ -7,6 +7,7 @@ import { Button } from 'components/Atoms/Buttons'
 import { TextInput } from 'components/Atoms/Inputs'
 import ImageUploader from 'components/Molecules/ImageUploader'
 import { Modal } from 'components/Molecules/Modal'
+import { AddressInputField } from 'components/Molecules/FormComponents'
 import { useDispatch } from "react-redux";
 import { setUserInfo } from "slices/userSlice";
 
@@ -18,16 +19,11 @@ const inputObject = [
   {name: "images", label: "images", type: "text"},
 ]
 
-const addressInputObject = [
-  {"data-type": "address", name: "street", label: "street", type: "text"},
-  {"data-type": "address", name: "city", label: "city", type: "text"},
-  {"data-type": "address", name: "state", label: "state", type: "text"},
-  {"data-type": "address", name: "zipCode", label: "zip code", type: "text"}
-]
-
 export const UserForm = ({setIsModalOpen, isModalOpen, userData}) => {
   const [inputState, setInputState] = useState({})
-  // console.log('UserForm-userData--> ', userData)
+  const [address, setAddress] = useState(userData?.address)
+  const [imageListState, setImageListState] = useState(userData?.images)
+
   const dispatch = useDispatch();
   const onInputChange = (e) => {
     if(e.target.getAttribute('data-type') === "address"){
@@ -46,31 +42,20 @@ export const UserForm = ({setIsModalOpen, isModalOpen, userData}) => {
     }
   }
 
-  const onItemChange = (obj) => {
-    if( obj?.name === "state"){
-      setInputState({
-        ...inputState,
-        address: {
-          ...inputState.address,
-          'state': obj.value
-        }
-      })
-    }
-    if( obj?.name === "images"){
-      setInputState({
-        ...inputState,
-        'images': inputState?.images ? inputState?.images.concat(obj.value) : [obj.value]
-      })
-    }
-  }
-
   const onClick = async() => {
     // const checkEmail = (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputState.email));
     // const checkPhoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(inputState.phone)
     
+    const consolidateInput = {
+      ...inputState,
+      id: userData.id,
+      images: imageListState, 
+      address
+    }
+
     await API.graphql({
       query: updateUser,
-      variables: {input : {id: userData.id, ...inputState}}
+      variables: {input : consolidateInput}
     }).then(res => {
       // console.log('UserForm-res-->: ', res)
       dispatch(setUserInfo(res.data.updateUser))
@@ -92,9 +77,9 @@ export const UserForm = ({setIsModalOpen, isModalOpen, userData}) => {
                 <div className={styles.imageUploadBlock} key="image">
                   <p>add image</p>
                   <ImageUploader 
-                    onImageChange={onItemChange}
-                    // setImageURL={setImageURL}
-                  />
+                    id={userData?.id}
+                    imageListState={imageListState}
+                    setImageListState={setImageListState}/>
                 </div>
               )
               : <TextInput 
@@ -108,22 +93,10 @@ export const UserForm = ({setIsModalOpen, isModalOpen, userData}) => {
             )
           }
         </div>
-        <div className={styles.addresBlock}>
-          <p className={styles.userFormTitle}>ADDRESS</p>
-          <div className={styles.addresInputWrap}>
-            {
-              addressInputObject.map(object => 
-                <TextInput 
-                  {...object}
-                  key={object.label}
-                  name={object.name}
-                  placeholder={userData?.['address']?.[object.name] ?? inputState?.['address']?.[object.name]}
-                  onChange={onInputChange}
-                />
-              )
-            }
-          </div>
-        </div>
+        <AddressInputField
+          address={address}
+          setAddress={setAddress}
+        />
         <div className={styles.buttonWrapper}>
           <Button 
             onClick={onClick}

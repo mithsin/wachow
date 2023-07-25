@@ -27,8 +27,7 @@ export const UpdateItemForm = ({
     // console.log('UpdateItemForm-userData--->: ', userData)
 
     const dispatch = useDispatch();
-    const [imageURL, setImageURL] = useState('');
-    const [imageInfo, setImageInfo] = useState();
+    const [imageListState, setImageListState] = useState(images)
     const [itemInput, setItemInput] = useState({
         id: id, 
         name: name,
@@ -39,21 +38,6 @@ export const UpdateItemForm = ({
         shopItemsId: shopItemsId
     });
     const [itemSize, setItemSize] = useState(sizes);
-
-    useEffect(()=>{
-        if(imageURL){
-            const newImage = {
-                id: uuidv4(), 
-                itemId: shopItemsId, 
-                name: imageInfo?.value ? imageInfo?.value : `image-${uuidv4()}`,
-                src: imageURL
-            }
-            setItemInput({
-                ...itemInput,
-                images: itemInput?.images ? itemInput.images.concat([newImage]) : [newImage]
-            })
-        }
-    },[imageURL])
 
     const formInputChange = (e) => {
         setItemInput({ 
@@ -68,33 +52,21 @@ export const UpdateItemForm = ({
             name: "Regular", 
             price: "0"
         }])
-        setImageURL('')
-        setImageInfo({
-            name: "images",
-            value: ""
-        })
     };
 
     const onClickUpdateItem = async() => {
-        
-        const addItemIdIntoImage = itemInput?.images 
-            ? itemInput?.images.map(image => {
-                return {...image}
-            }) 
-            : [];
-
         const removeEmptySize = itemSize.filter(size => !!size.name)
         const inputConver = {
             id: userData.id,
             name: itemInput?.name,
             ingrediances: itemInput?.ingrediances,
-            images: addItemIdIntoImage,
+            images: imageListState,
             sizes: removeEmptySize
         }
 
-        // console.log('inputConver-->: ', inputConver)
-        dispatch(setUpdateItem(inputConver))
-        setIsModalOpen(!isModalOpen)
+        console.log('inputConver-->: ', inputConver)
+        // dispatch(setUpdateItem(inputConver))
+        // setIsModalOpen(!isModalOpen)
         // clearInputs()
     }
 
@@ -123,10 +95,9 @@ export const UpdateItemForm = ({
                 <div className={styles['inner-block']}>
                     <div className={styles['formWrapper']}>
                         <ImageUploader 
-                            setImageURL={setImageURL}
-                            setImageInfo={setImageInfo}
-                            inputState={itemInput}
-                            setInputState={setItemInput}/>
+                            id={shopItemsId}
+                            imageListState={imageListState}
+                            setImageListState={setImageListState}/>
                             {
                                 inputSettings.map((inputSetting)=>
                                     <TextInput 

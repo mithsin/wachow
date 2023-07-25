@@ -34,12 +34,12 @@ const Template = (props) => {
     "updatedAt": "2023-07-12T15:13:37.736Z",
     "userShopsId": "248894a8-b051-7069-879b-1e98700a5486",
     "owner": "248894a8-b051-7069-879b-1e98700a5486",
-    "__typename": "Shop",
     "items": {
         "items": [
             {
                 "id": "1b43f4a2-4eb1-4d38-93ea-df0675dbf04e",
                 "ingrediances": "meat and stuff",
+                "description": null,
                 "locationItemsId": null,
                 "name": "hamburger",
                 "orderItemsId": null,
@@ -73,7 +73,7 @@ const Template = (props) => {
         ]
     },
     "isSellerPage": true
-}
+  }
   return(
     <NewItemForm 
       setIsModalOpen={setIsModalOpen}
