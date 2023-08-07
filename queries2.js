@@ -17,6 +17,30 @@ export const getUser = /* GraphQL */ `
           userShopsId
           owner
           __typename
+          items {
+            items {
+              id
+              ingrediances
+              locationItemsId
+              name
+              orderItemsId
+              owner
+              shopItemsId
+              shopName
+              sizes {
+                id
+                name
+                price
+              }
+              images {
+                id
+                itemId
+                name
+                shopId
+                src
+              }
+            }
+          }
         }
         nextToken
         __typename
@@ -176,13 +200,24 @@ export const getShop = /* GraphQL */ `
           shopName
           name
           ingrediances
-          description
           createdAt
           updatedAt
           shopItemsId
           orderItemsId
           locationItemsId
           owner
+          sizes {
+            id
+            name
+            price
+          }
+          images {
+            id
+            itemId
+            name
+            shopId
+            src
+          }
           __typename
         }
         nextToken
@@ -409,13 +444,40 @@ export const getItem = /* GraphQL */ `
         __typename
       }
       ingrediances
-      description
       createdAt
       updatedAt
       shopItemsId
       orderItemsId
       locationItemsId
       owner
+      __typename
+    }
+  }
+`;
+export const getItemPublic = /* GraphQL */ `
+  query GetItem($id: ID!) {
+    getItem(id: $id) {
+      id
+      shopName
+      name
+      images {
+        id
+        name
+        src
+        shopId
+        itemId
+        __typename
+      }
+      sizes {
+        id
+        name
+        price
+        __typename
+      }
+      ingrediances
+      shopItemsId
+      orderItemsId
+      locationItemsId
       __typename
     }
   }
@@ -458,7 +520,6 @@ export const listItems = /* GraphQL */ `
           __typename
         }
         ingrediances
-        description
         createdAt
         updatedAt
         shopItemsId
@@ -468,34 +529,6 @@ export const listItems = /* GraphQL */ `
         __typename
       }
       nextToken
-      __typename
-    }
-  }
-`;
-export const getItemPublic = /* GraphQL */ `
-  query GetItem($id: ID!) {
-    getItem(id: $id) {
-      id
-      shopName
-      name
-      images {
-        id
-        name
-        src
-        shopId
-        itemId
-        __typename
-      }
-      sizes {
-        id
-        name
-        price
-        __typename
-      }
-      ingrediances
-      shopItemsId
-      orderItemsId
-      locationItemsId
       __typename
     }
   }
@@ -510,7 +543,6 @@ export const getOrder = /* GraphQL */ `
           shopName
           name
           ingrediances
-          description
           createdAt
           updatedAt
           shopItemsId
@@ -556,26 +588,12 @@ export const getLocation = /* GraphQL */ `
   query GetLocation($id: ID!) {
     getLocation(id: $id) {
       id
-      title
-      address {
-        street
-        city
-        state
-        zipCode
-        __typename
-      }
-      dateTime {
-        data
-        times
-        __typename
-      }
       items {
         items {
           id
           shopName
           name
           ingrediances
-          description
           createdAt
           updatedAt
           shopItemsId
@@ -603,19 +621,6 @@ export const listLocations = /* GraphQL */ `
     listLocations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        title
-        address {
-          street
-          city
-          state
-          zipCode
-          __typename
-        }
-        dateTime {
-          data
-          times
-          __typename
-        }
         items {
           nextToken
           __typename
