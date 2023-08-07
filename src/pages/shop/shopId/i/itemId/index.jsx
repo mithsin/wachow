@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
+import styles from './Item.module.scss';
 
 import { useDispatch } from "react-redux";
 import { fetchItemPublicState } from "slices/userSlice";
 
 import { ItemDisplaySection } from 'components/Organisms';
+
 
 
 export const ShopItem = () => {

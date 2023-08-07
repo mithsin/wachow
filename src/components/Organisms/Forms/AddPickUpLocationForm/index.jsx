@@ -1,40 +1,91 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUserState, userInfo, toggleUpdateTrigger } from "slices/userSlice";
-import styles from './Seller.module.scss';
+import { useState } from 'react'
+import { API } from 'aws-amplify';
+import { updateUser } from 'graphql/mutations'
+import styles from './AddPickUpLocationForm.module.scss'
 
 import { Button } from 'components/Atoms/Buttons'
-import { ShopCard } from 'components/Molecules/Cards'
-import { NewShopForm, AddPickUpLocationForm } from 'components/Organisms/Forms'
+import { TextInput } from 'components/Atoms/Inputs'
+import { AddressInputField } from 'components/Molecules/FormComponents'
+import LocationItemCard from 'components/Molecules/Cards/LocationItemCard'
+import { useDispatch } from "react-redux";
 
-export const Seller = (props) => {
-  const userState = useSelector(userInfo);
-  const [ isNewShop, setIsNewShop ] = useState(false);
-  const [ isNewPickUp, setIsNewPickUp] = useState(false);
+const inputObject = [
+  {name: "title", label: "title", type: "text"}
+]
 
-  console.log('Seller-userState--->: ', userState)
-  const {
-    firstName="",
-    lastName="",
-    shops
-  } = userState
-  return (
-    <div>
-      <h1>Seller page</h1>
-      <h1>{firstName ?? ''} {lastName ?? ''}</h1>
-      {/* <AddPickUpLocationForm userData={userState} /> */}
-      {shops?.items?.length > 0
-        ? shops?.items?.map(shop => <ShopCard key={shop.id} {...shop} isSellerPage={true}/>)
-        : <div className={styles.addShopButton}><Button onClick={()=>setIsNewShop(!isNewShop)} label="ADD SHOP"/></div>
-      }
-      {
-        isNewShop && <NewShopForm setIsModalOpen={setIsNewShop} isModalOpen={isNewShop}/>
-      }
-    </div>
+export const AddPickUpLocationForm = ({userData}) => {
+  const [inputState, setInputState] = useState({})
+  const [address, setAddress] = useState()
+  const shopItems = userData?.shops?.items?.[0]?.items?.items;
+  console.log('AddPickUpLocationForm-shopItems-->: ', shopItems)
+  const onInputChange = (e) => {
+    if(e.target.getAttribute('data-type') === "address"){
+      setInputState({
+        ...inputState,
+        address: {
+          ...inputState.address,
+          [e.target.name]: e.target.value
+        }
+      })
+    } else {
+      setInputState({
+        ...inputState,
+        [e.target.name]: e.target.value
+      })
+    }
+  }
+
+  const onClick = async() => {
+    // const checkEmail = (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputState.email));
+    // const checkPhoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(inputState.phone)
+    
+    // const consolidateInput = {
+    //   ...inputState,
+    //   id: userData.id,
+    //   images: imageListState, 
+    //   address
+    // }
+
+    // await API.graphql({
+    //   query: updateUser,
+    //   variables: {input : consolidateInput}
+    // }).then(res => {
+    //   dispatch(setUserInfo(res.data.updateUser))
+    // })
+    // .catch(err=> console.log('err-->: ', err));
+  }
+
+  return(
+
+      <div className={styles.userFormWrap}>
+        <div className={styles.initInputWrap}>
+          {inputObject && 
+            inputObject.map(object =>
+              <TextInput 
+                  key={object?.label}
+                  label={object?.label}
+                  name={object?.name}
+                  type={object?.type}
+                  placeholder={''}
+                  onChange={onInputChange} />
+            )
+          }
+        </div>
+        <AddressInputField
+          address={address}
+          setAddress={setAddress}
+        />
+        <div className={styles.buttonWrapper}>
+          <Button 
+            onClick={onClick}
+            label="SUBMIT"
+          />
+        </div>
+      </div>
   )
 }
 
-export default Seller;
+export default AddPickUpLocationForm;
 
 // const userStateMockData = {
 //   "authState": false,

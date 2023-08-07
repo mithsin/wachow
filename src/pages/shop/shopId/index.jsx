@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchShopPublicState } from "slices/userSlice";
 
-import { ShopCard } from 'components/Molecules/Cards'
+import { ShopCard } from 'components/Molecules/Cards';
 
 
 export const Shop = (props) => {

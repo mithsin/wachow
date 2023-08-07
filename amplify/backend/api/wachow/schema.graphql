@@ -78,7 +78,15 @@ type Location @model @auth(rules: [
   }
 ]) {
   id: ID!
+  title: String
+  address: Address
+  dateTime: [DateTime]
   items: [Item] @hasMany
+}
+
+type DateTime {
+  data: String
+  times: [String]
 }
 
 type Address {

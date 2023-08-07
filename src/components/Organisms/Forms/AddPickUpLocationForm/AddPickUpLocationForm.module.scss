@@ -1,0 +1,31 @@
+.userFormWrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+}
+
+.imageUploadBlock {
+    min-height: 100px;
+    p {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: left;
+        margin: 0 0 8px 0;
+    }
+}
+
+.initInputWrap {
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: repeat( 1, minmax(200px, 1fr) );
+    @media only screen and (min-width: 540px) {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
