@@ -18,11 +18,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 
-export const PlusIcon = ({className, size="1x"}) => <FontAwesomeIcon icon={faPlus} className={className} size={size}/>;
+export const PlusIcon = ({className, onClick, size="1x"}) => <FontAwesomeIcon icon={faPlus} className={className} size={size} onClick={onClick}/>;
 
 export const SortDown = ({className, size="1x"}) => <FontAwesomeIcon icon={faSortDown} className={className} size={size}/>;
 
-export const MinusIcon = ({className, size="1x"}) => <FontAwesomeIcon icon={faMinus} className={className} size={size}/>;
+export const MinusIcon = ({className, onClick, size="1x"}) => <FontAwesomeIcon icon={faMinus} className={className} size={size}  onClick={onClick}/>;
 
 export const HomeIcon = ({className, size="1x"}) => <FontAwesomeIcon icon={faHome} className={className} size={size}/>;
 

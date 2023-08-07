@@ -1,9 +1,9 @@
-import { UserForm } from './index';
+import { Toggle } from './index';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Components/Form/UserForm',
-  component: UserForm,
+  title: 'components/Atoms/Toggles',
+  component: Toggle,
   tags: ['autodocs'],
   argTypes: {
   },
@@ -11,4 +11,11 @@ const meta = {
 
 export default meta;
 
-export const Default = {}
+
+export const Default = {
+  args: {
+    labelOn: "on",
+    labelOff: "off"
+  },
+};
+

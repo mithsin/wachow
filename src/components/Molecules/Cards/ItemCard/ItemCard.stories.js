@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom'
 import { ItemCard } from './index.jsx';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
@@ -5,8 +6,7 @@ const meta = {
   title: 'components/Molecules/Cards/ItemCard',
   component: ItemCard,
   tags: ['autodocs'],
-  argTypes: {
-  },
+  argTypes: {},
 };
 const blankImage = "https://cdn1.vectorstock.com/i/1000x1000/50/20/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg";
 export default meta;
@@ -45,7 +45,10 @@ const Template = (props) => {
       src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD2M5z7bwh4MD222SynTaONmpFsLtMvdNwf3fi7Ki2BQ&usqp=CAU&ec=48665698"
     }]
 }
-  return( <ItemCard {...userData}/> )
+  return(
+    <BrowserRouter>
+      <ItemCard {...userData}/>
+    </BrowserRouter> )
 }
 
 export const Default = Template.bind({})

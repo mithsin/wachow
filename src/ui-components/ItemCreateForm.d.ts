@@ -16,11 +16,13 @@ export declare type ItemCreateFormInputValues = {
     shopName?: string;
     name?: string;
     ingrediances?: string;
+    description?: string;
 };
 export declare type ItemCreateFormValidationValues = {
     shopName?: ValidationFunction<string>;
     name?: ValidationFunction<string>;
     ingrediances?: ValidationFunction<string>;
+    description?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ItemCreateFormOverridesProps = {
@@ -28,6 +30,7 @@ export declare type ItemCreateFormOverridesProps = {
     shopName?: PrimitiveOverrideProps<TextFieldProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
     ingrediances?: PrimitiveOverrideProps<TextFieldProps>;
+    description?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ItemCreateFormProps = React.PropsWithChildren<{
     overrides?: ItemCreateFormOverridesProps | undefined | null;

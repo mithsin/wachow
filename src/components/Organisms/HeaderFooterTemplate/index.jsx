@@ -6,7 +6,7 @@ import { fetchUserState, userInfo, toggleUpdateTrigger } from "slices/userSlice"
 import styles from './HeaderFooter.module.scss'
 
 import { HeaderDropDown } from "components/Molecules/HeaderDropDown";
-import UserForm from "components/Molecules/Forms/UserForm";
+import UserForm from "components/Organisms/Forms/UserForm";
 
 
 export const HeaderFooterTemplate = ({

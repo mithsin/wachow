@@ -1,16 +1,21 @@
-import { UpdateItemForm } from './index';
+import React from 'react';
+import { NewShopForm } from './index';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from "store/store";
+
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'Components/Form/UpdateItemForm',
-  component: UpdateItemForm,
+  title: 'components/Organisms/Forms/NewShopForm',
+  component: NewShopForm,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <Provider store={store}>
-        <Story />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Story />
+        </Provider>
+      </BrowserRouter>
     )
   ]
 };
@@ -18,7 +23,7 @@ const meta = {
 export default meta;
 
 const Template = (props) => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(true);
   const userData = {
     "id": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
     "phone": null,
@@ -54,10 +59,10 @@ const Template = (props) => {
         ],
         "nextToken": null
     }
-}
+  }
   return(
-    <UpdateItemForm 
-      closeModal={setIsModalOpen}
+    <NewShopForm 
+      setIsModalOpen={setIsModalOpen}
       isModalOpen={isModalOpen}
       userData={userData}
     />

@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { TextInput } from 'components/Atoms/Inputs';
 import { Button } from 'components/Atoms/Buttons';
 import { Modal } from 'components/Molecules/Modal';
+import { SizeInputField } from 'components/Molecules/FormComponents';
 import ImageUploader from 'components/Molecules/ImageUploader';
 
 import { useDispatch } from "react-redux";
@@ -26,8 +27,7 @@ export const UpdateItemForm = ({
     // console.log('UpdateItemForm-userData--->: ', userData)
 
     const dispatch = useDispatch();
-    const [imageURL, setImageURL] = useState('');
-    const [imageInfo, setImageInfo] = useState();
+    const [imageListState, setImageListState] = useState(images)
     const [itemInput, setItemInput] = useState({
         id: id, 
         name: name,
@@ -39,40 +39,11 @@ export const UpdateItemForm = ({
     });
     const [itemSize, setItemSize] = useState(sizes);
 
-    useEffect(()=>{
-        if(imageURL){
-            const newImage = {
-                id: uuidv4(), 
-                itemId: shopItemsId, 
-                name: imageInfo?.value ? imageInfo?.value : `image-${uuidv4()}`,
-                src: imageURL
-            }
-            setItemInput({
-                ...itemInput,
-                images: itemInput?.images ? itemInput.images.concat([newImage]) : [newImage]
-            })
-        }
-    },[imageURL])
-
     const formInputChange = (e) => {
         setItemInput({ 
             ...itemInput, 
             [e.target.name] : e.target.value
         })
-    };
-
-    const formInputSizeChange = (e) => {
-        const checkDollar = /^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/;
-        const dollar = (e.target.name === "price") && !e.target.value ? 0 : e.target.value;
-        if((e.target.name === "price" && checkDollar.test(dollar)) || e.target.name === "name"){
-            const updateSizeInput = (
-                itemSize.map((item)=> {
-                    return {...item, [e.target.name] : e.target.value}
-                })
-            )
-    
-            setItemSize(updateSizeInput)
-        }
     };
 
     const clearInputs = () => {
@@ -81,38 +52,22 @@ export const UpdateItemForm = ({
             name: "Regular", 
             price: "0"
         }])
-        setImageURL('')
-        setImageInfo({
-            name: "images",
-            value: ""
-        })
     };
 
     const onClickUpdateItem = async() => {
-        
-        const addItemIdIntoImage = itemInput?.images 
-            ? itemInput?.images.map(image => {
-                return {...image}
-            }) 
-            : [];
-
+        const removeEmptySize = itemSize.filter(size => !!size.name)
         const inputConver = {
             id: userData.id,
             name: itemInput?.name,
             ingrediances: itemInput?.ingrediances,
-            images: addItemIdIntoImage,
-            sizes: itemSize
+            images: imageListState,
+            sizes: removeEmptySize
         }
 
-        dispatch(setUpdateItem(inputConver))
-        setIsModalOpen(!isModalOpen)
+        console.log('inputConver-->: ', inputConver)
+        // dispatch(setUpdateItem(inputConver))
+        // setIsModalOpen(!isModalOpen)
         // clearInputs()
-    }
-
-    const onImageDelete = (e) => {
-        console.log('e-->: ', e.target)
-        // itemInput, setItemInput
-
     }
 
     const inputSettings = [
@@ -131,20 +86,6 @@ export const UpdateItemForm = ({
         }
     ];
 
-    const inputSizeSettings = [
-        {
-            type: "text",
-            name: "name", 
-            label: "size", 
-            placeholder: "size"
-        },{
-            type: "text",
-            name: "price", 
-            label: "price", 
-            placeholder: "price"
-        }
-    ];
-
     return(
         <Modal
             setIsModalOpen={setIsModalOpen}
@@ -154,10 +95,9 @@ export const UpdateItemForm = ({
                 <div className={styles['inner-block']}>
                     <div className={styles['formWrapper']}>
                         <ImageUploader 
-                            setImageURL={setImageURL}
-                            setImageInfo={setImageInfo}
-                            inputState={itemInput}
-                            setInputState={setItemInput}/>
+                            id={shopItemsId}
+                            imageListState={imageListState}
+                            setImageListState={setImageListState}/>
                             {
                                 inputSettings.map((inputSetting)=>
                                     <TextInput 
@@ -167,17 +107,9 @@ export const UpdateItemForm = ({
                                 )
                             }
                             <div className={styles['sizeWrapper']}>
-                                {
-                                    inputSizeSettings.map((inputSizeSetting, i)=>{
-                                        const current = i%2 > 0 ? i - 1 : i;
-                                        return (
-                                            <TextInput 
-                                                key={inputSizeSetting.name} 
-                                                { ...inputSizeSetting }
-                                                value={itemSize[current][`${inputSizeSetting.name}`] ?? ''}
-                                                onChange={ formInputSizeChange } />
-                                    )})
-                                }
+                                <SizeInputField
+                                    itemSize={itemSize}
+                                    setItemSize={setItemSize} />
                             </div>
                             <div className={styles['formButtonWrapper']}>
                                 <Button

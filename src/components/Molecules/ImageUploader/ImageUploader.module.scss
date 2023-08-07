@@ -4,9 +4,22 @@
     display: inline-block;
 }
 
+.toggleSwitch {
+    margin-bottom: 12px;
+}
+
+.inputWrapper {
+    width: 285px;
+    height: 52px;
+}
+
 .inputUrlWrap {
     display: flex;
     align-items: center;
+}
+
+.buttonAlign {
+    margin-bottom: 16px;
 }
 
 .imagesListBlock {
@@ -33,4 +46,5 @@
 
 .iconStyle {
     color: #ff0000;
+    background: #fff;
 }
