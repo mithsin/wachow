@@ -1,0 +1,18 @@
+.shopWrapper {
+    width: 100%;
+}
+
+.imageSection {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imageContainer {
+    max-width: 300px;
+    max-height: 400px;
+    height: 100%;
+    width: 100%;
+    img {
+        width: 100%;
+    }
+}

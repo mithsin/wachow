@@ -1,0 +1,49 @@
+.searchInputWrapper {
+    display: flex;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 8px
+}
+
+.heroInput{
+    background-color: #fff;
+    border: none;
+}
+.SearchBtnWrap {
+    cursor: pointer;
+    padding-left: 8px;
+    border-left: 1px solid;
+}
+
+.textInputWrapperFull {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    .textInput {
+        input {
+            padding: 8px;
+            width: 100%;
+        }
+    }
+}
+
+.textInputWrapper {
+    margin: 0 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    .textInput {
+        input {
+            padding: 8px;
+            width: calc(100% - 16px);
+        }
+    }
+}
+
+.textInputLabel {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 8px;
+    display: flex;
+}
+

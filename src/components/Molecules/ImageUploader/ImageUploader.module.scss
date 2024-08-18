@@ -1,0 +1,50 @@
+.dropbox { 
+    border: 4px dashed #ccc; 
+    padding: 8px;
+    display: inline-block;
+}
+
+.toggleSwitch {
+    margin-bottom: 12px;
+}
+
+.inputWrapper {
+    width: 285px;
+    height: 52px;
+}
+
+.inputUrlWrap {
+    display: flex;
+    align-items: center;
+}
+
+.buttonAlign {
+    margin-bottom: 16px;
+}
+
+.imagesListBlock {
+    background-color: rgb(151, 151, 151);
+}
+
+.imageListItem {
+    position: relative;
+    padding-right: 8px;
+}
+
+.imageStyle {
+    width: 100px;
+}
+
+.iconWrap {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    background-color: #ffffff28;
+    border-radius: 16px;
+    border: 1px solid black;
+}
+
+.iconStyle {
+    color: #ff0000;
+    background: #fff;
+}
