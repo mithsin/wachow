@@ -19,8 +19,8 @@ const LoginPage = () => {
     try {
       const session = await signIn(email, password);
       const accessToken = session?.AuthenticationResult?.AccessToken
-      console.log('Sign in successful', session);
-      console.log('accessToken', accessToken);
+      // console.log('Sign in successful', session);
+      // console.log('accessToken', accessToken);
       if (accessToken && typeof accessToken !== 'undefined') {
         sessionStorage.setItem('accessToken', accessToken);
         if (sessionStorage.getItem('accessToken')) {
@@ -43,7 +43,7 @@ const LoginPage = () => {
       return;
     }
     try {
-      console.log('email, password--> ', email, password)
+      // console.log('email, password--> ', email, password)
       await signUp(email, password);
       navigate('/confirm', { state: { email } });
     } catch (error) {

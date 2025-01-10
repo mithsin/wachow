@@ -5,6 +5,8 @@ import { createSlice } from '@reduxjs/toolkit';
 // import { createShop, deleteShop, createItem, updateItem, deleteItem } from 'graphql/mutations'
 
 import { mockHomeData, mockItemData } from './mockData';
+import { mockFullData } from "@src/slices/mockData/FullMockData";
+
 
 const initialState = {
   authState: false,
@@ -97,6 +99,9 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
   //   dispatch(setUpdateTrigger(false));
   // })
   // .catch(err => console.log('fetchUserState-err--> ', err))
+
+  console.log('dav,userId: ', userId)
+  await dispatch(setUserInfo(mockFullData));
 }
 
 export const fetchShopState = ( shopId ) => async(dispatch) => {

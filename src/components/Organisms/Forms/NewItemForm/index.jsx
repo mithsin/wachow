@@ -17,7 +17,6 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     name: "Regular", 
     price: ""
   }
-  console.log('userData--> ', userData)
   const dispatch = useDispatch();
   const [itemInput, setItemInput] = useState({});
   const [itemSize, setItemSize] = useState([initSize]);
