@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { formatter } from '@src/utils/jsHelper';
+import { Button } from 'components/Atoms/Buttons';
 import styles from './ItemDisplaySection.module.scss';
 
 import { StarIcon, HeartIcon } from 'components/Atoms/Icons';
@@ -71,6 +72,9 @@ export const ItemDisplaySection = (props) => {
             {description}
           </div>
         }
+        <Button 
+          label="Add to cart"
+          onClick={() => { console.log('add to cart click')}}/>
     </div>
   );
 }

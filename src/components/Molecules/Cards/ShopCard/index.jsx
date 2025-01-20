@@ -47,7 +47,7 @@ export const ShopCard = (props) => {
       <NewItemForm
         setIsModalOpen={setIsItemModalOpen}
         isModalOpen={isItemModalOpen}
-        userData={props}
+        userData={{...props, shopId: id}}
       />
       
     </div>

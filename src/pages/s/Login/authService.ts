@@ -68,3 +68,23 @@ export const confirmSignUp = async (email: string, code: string) => {
     throw error;
   }
 };
+
+export const signOut = async (AccessToken: string) => {
+  const params = {
+    triggerSource: "signOut",
+    AccessToken: AccessToken
+  };
+
+  try {
+    axios.post('https://qg8euoyjgl.execute-api.us-east-1.amazonaws.com/prod/user', params)
+      .then(res => {
+        console.log('res--->: ', res)
+        return res.data
+      })
+  } catch (error) {
+    console.error("Error confirming sign out: ", error);
+    throw error;
+  }
+};
+
+// export const signOut = async() => {}

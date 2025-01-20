@@ -20,8 +20,6 @@ export const handler = async (event) => {
     });
 
     const user = await client.send(command);
-    console.log('user--->: ', user)
-    console.log('user.UserStatus--->: ', user.UserStatus)
     if(user && user.UserStatus === "CONFIRMED"){
         return user
     } else {

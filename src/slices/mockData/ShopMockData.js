@@ -1,7 +1,7 @@
 const blankImage = "https://cdn1.vectorstock.com/i/1000x1000/50/20/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg";
 
 export const mockShopData = {
-  id: "shop-id-abcdefghijklmnopqrstuvwxyz_1",
+  id: "store-id-kjqokjfoijj298jviasodkjf9ij298skdj1",
   shopName: "Wa Chow Store",
   phone: "6785675678",
   email: "shop@test.com",

@@ -14,6 +14,7 @@ import { setAddItem } from "@src/slices/userSlice";
 export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
   const initSize = {
     id: uuidv4(),
+    categoryName: "",
     name: "Regular", 
     price: ""
   }
@@ -31,11 +32,7 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
 
   const clearInputs = () => {
     setItemInput({})
-    setItemSize([{
-      id: uuidv4(),
-      name: "Regular", 
-      price: ""
-    }])
+    setItemSize([initSize])
   };
 
   const onClickCreateItem = async() => {
@@ -44,11 +41,14 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     const inputConver = {
       id: uuidv4(),
       shopName: userData.shopName,
-      shopItemsId: userData.id,
+      shopItemsId: userData.shopId,
       name: itemInput?.name,
       description: itemInput?.description,
+      categoryName: itemInput.categoryName,
       images: imageListState,
-      sizes: removeEmptySize
+      sizes: removeEmptySize,
+      typename: "Item",
+      owner: ""
     }
     dispatch(setAddItem(inputConver))
     setIsModalOpen(!isModalOpen)
@@ -68,6 +68,12 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
       label: "description", 
       placeholder: "description",
       value: itemInput.description || ''
+    },{
+      type: "text",
+      name: "categoryName", 
+      label: "categoryName", 
+      placeholder: "main",
+      value: itemInput.categoryName || ''
     }
   ];
 

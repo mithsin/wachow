@@ -2,13 +2,13 @@ import {
 	SignUpCommand,
     ResendConfirmationCodeCommand,
 	ConfirmSignUpCommand,
+	AdminGetUserCommand,
 	InitiateAuthCommand,
     CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { createHmac } from 'crypto';
 import { DynamoDB } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocument } from '@aws-sdk/lib-dynamodb';
-
 export const handler = async (event) => {
 	const CLIENT_SECRET = "1b9ugcedsfng5fbmsgsi723f2ogli8ahs80iv0mb39a65h7geqjk";
     const CLIENT_ID = "6o184j9jtqoppp23ga6vpm6ghg";
@@ -19,20 +19,45 @@ export const handler = async (event) => {
 
 	let command;
 
+  const getUser = async(email) => {
+      const command = new AdminGetUserCommand({
+          UserPoolId: USER_POOL_ID,
+          ClientId: CLIENT_ID,
+          Username: email,
+          SecretHash: secretHash
+      });
+      const user = await client.send(command);
+      if(user && user.UserStatus === "CONFIRMED"){
+		console.log('user--: ', user)
+        return user
+    } else {
+        return {
+            STATUS_CODES: 200,
+            user_status: "email had not been verified"
+        }
+    }
+  };
+
 	if(event.triggerSource == 'SignIn'){
-        const command = new InitiateAuthCommand({
-			AuthFlow: "USER_PASSWORD_AUTH",
-			AuthParameters: {
-				USERNAME: event.email,
-				PASSWORD: event.password,
-				SECRET_HASH: secretHash,
-			},
-			ClientId: CLIENT_ID,
-		});
-	
-		const user = client.send(command);
-		console.log('user-->: ', user)
-		return user;
+		const command = new InitiateAuthCommand({
+      AuthFlow: "USER_PASSWORD_AUTH",
+      AuthParameters: {
+      USERNAME: event.email,
+      PASSWORD: event.password,
+      SECRET_HASH: secretHash,
+    },
+      ClientId: CLIENT_ID,
+    });
+    
+    try {
+        const response = await client.send(command);
+		// console.log('response: ', response)
+        const userInfo = getUser(event.email)
+		console.log('userInfo: ', userInfo)
+		return userInfo;
+      } catch (error) {
+        console.error('Error:', error)
+      }
 	}
 
 	if(event.triggerSource == 'SignUp'){
@@ -81,6 +106,15 @@ export const handler = async (event) => {
 			SecretHash: secretHash,
 		});
 		return client.send(command);
+	}
+
+	if(event.triggerSource == 'SignOut'){
+		const command = new GlobalSignOutCommand({
+			AccessToken: event.accessToken
+		});
+		const response = await client.send(command);
+	
+		return response;
 	}
 
 };

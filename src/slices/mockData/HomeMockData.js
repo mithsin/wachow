@@ -2,7 +2,7 @@ const blankImage = "https://cdn1.vectorstock.com/i/1000x1000/50/20/no-photo-or-b
 
 export const mockHomeData = { 
   sellers: [{
-    id: "shop-id-abcdefghijklmnopqrstuvwxyz_1",
+    id: "store-id-kjqokjfoijj298jviasodkjf9ij298skdj1",
     shopId: "store-id-kjqokjfoijj298jviasodkjf9ij298skdj1",
     shopName: "Wa Chow Store",
     images: [{

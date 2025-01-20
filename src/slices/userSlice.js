@@ -3,10 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 // import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 // import { getUser, getShop, getItem, listItems, getShopPublic, getItemPublic } from 'graphql/queries';
 // import { createShop, deleteShop, createItem, updateItem, deleteItem } from 'graphql/mutations'
-
-import { mockHomeData, mockItemData } from './mockData';
+import axios from 'axios';
+import { mockHomeData, mockShopData, mockItemData } from './mockData';
 import { mockFullData } from "@src/slices/mockData/FullMockData";
 
+const BASE_URL = "https://qg8euoyjgl.execute-api.us-east-1.amazonaws.com/prod";
 
 const initialState = {
   authState: false,
@@ -53,7 +54,8 @@ export const userSlice = createSlice({
           return {
             ...state, 
             shops: {
-              items: [action.payload, ...state.shops.items]
+              shop: action.payload.shop,
+              items: [...action.payload.items, ...state.shops.items]
             }
           }
         },
@@ -90,6 +92,7 @@ export const {
 
 
 export const fetchUserState = ( userId ) => async(dispatch) => {
+  // GRPAH QL VERSION
   // await API.graphql({ 
   //   query: getUser,
   //   variables: { id: userId }
@@ -100,8 +103,23 @@ export const fetchUserState = ( userId ) => async(dispatch) => {
   // })
   // .catch(err => console.log('fetchUserState-err--> ', err))
 
+  // AXIOS VERSION
+  // await axios.post(`${BASE_URL}/user`, {
+  //   "triggerSource": "SignIn",
+  //   "email": "hsinbluemoon@gmail.com",
+  //   "password": "!Ski12ljf9sdlfjdF!@#$TGASD"
+  // }).then((response)=>{
+  //   console.log('dav, response.data: ', response.data)
+  //       dispatch(setUserInfo(response.data));
+  //       dispatch(setUpdateTrigger(false));
+  // }).catch((error)=>{
+  //   console.log('get user error')
+  // })
+
+  // FOLLOWING IS FOR MOCK
   console.log('dav,userId: ', userId)
   await dispatch(setUserInfo(mockFullData));
+  dispatch(setUpdateTrigger(false));
 }
 
 export const fetchShopState = ( shopId ) => async(dispatch) => {
@@ -126,8 +144,25 @@ export const fetchShopPublicState = ( shopId ) => async(dispatch) => {
   //   return response.data.getShop
   // })
   // .catch(err => console.log('fetchShopState-err--> ', err))
-
   // return fetchValue
+
+
+  // AXIOS VERSION
+  await axios.post(`${BASE_URL}/stores`, {
+    "triggerSource": "GET_SHOP_AND_ALL_ITEMS",
+    "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7"
+  }).then((response)=>{
+    console.log('dav, response.data: ', JSON.parse(response.data.body))
+    const shopAndItemsData = JSON.parse(response.data.body)
+    dispatch(setShopUpdate(shopAndItemsData.Responses))
+    return shopAndItemsData
+  }).catch((error)=>{
+    console.log('get user error')
+  })
+
+
+  // FOLLOWING IS FOR MOCK
+  // return mockShopData;
 }
 
 export const setAddShop = ( inputConver ) => async(dispatch) => {
