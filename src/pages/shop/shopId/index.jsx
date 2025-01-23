@@ -14,25 +14,20 @@ export const Shop = (props) => {
   const userInfoState = useSelector(userInfo);
   const { shopId } = useParams();
   const [ shopState, setShopState ] = useState({})
-  console.log('dav, userInfoState--->: ', userInfoState)
+
   useEffect(()=> {
-    getShopData()
-  },[])
+    dispatch(fetchShopPublicState("fetchShopPublicState123"))
+  },[shopId])
   
   useEffect(() => {
-    if(userShopsState.length > 0){
-      setShopState(userShopsState.find((item) => item.id === shopId))
+    if(userShopsState.length > 0 && shopId){
+      setShopState(userShopsState.find((item) => item?.id === shopId))
     }
 
-  },[shopId])
-  // console.log('dav,shopState-->: ', shopState)
-  const getShopData = async() => {
-    await dispatch(fetchShopPublicState(shopId))
-  }
+  },[userShopsState, shopId])
 
   return shopState === null ? <div>loading</div> : (
     <div className={styles.shopWrapper}>
-      <h2>SHOP ID PAGE</h2>
       <h1>{shopState?.shopName}</h1>
       <ShopCard {...shopState} isSellerPage={false} id={shopId}/>
     </div>

@@ -3,15 +3,11 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { formatter } from '@src/utils/jsHelper';
-import styles from './ItemCard.module.scss';
-
+import { blankImage } from '@src/utils/sharesUtils';
 import { EllipsisVerticalIcon, StarIcon, HeartIcon } from 'components/Atoms/Icons';
-
-
+import styles from './ItemCard.module.scss';
 import "swiper/css";
 import "swiper/css/pagination";
-
-const blankImage = "https://cdn1.vectorstock.com/i/1000x1000/50/20/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg";
 
 export const ItemCard = (props) => {
   const {

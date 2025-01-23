@@ -3,7 +3,7 @@ const personImage = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profil
 
 export const mockSellerData = {
   id: "seller-id-abcdefghijklmnopqrstuvwxyz_1",
-  shopIds: ["store-id-kjqokjfoijj298jviasodkjf9ij298skdj1"],
+  shopIds: ["405bccfe-9d11-4db3-b4c1-4b287897e9b7"],
   createdDate: "datedatedatedate",
   firstName: "David",
   lastName: "Chen",
@@ -18,7 +18,7 @@ export const mockSellerData = {
     zipCode: "30066",
   },
   shops: [{
-    id: "store-id-kjqokjfoijj298jviasodkjf9ij298skdj1",
+    id: "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
     shopName: "Wa Chow Store",
     phone: "6785675678",
     email: "shop@test.com",

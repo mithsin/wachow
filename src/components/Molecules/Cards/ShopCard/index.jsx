@@ -15,13 +15,27 @@ export const ShopCard = (props) => {
     id, 
     shopName,
     description,
-    items,
+    categories,
     isSellerPage
   } = props;
 
-  // const onClickDeleteShop = async() => {
-  //   dispatch(setDeleteShopSlice(id))
-  // }
+  const CategoryComponent = ({categoryArray}) => {
+    return Object.entries(categoryArray).map(([key, value]) => {
+          return <>
+            <div className={styles.shopCardWrap}>
+                <h1>{key}</h1>
+                <div className={styles.shopCardContainer}>
+                  {
+                    value?.length > 0 
+                      ? value?.map((item, i) => <ItemCard key={`${item.id}--${i}`} {...item} isSellerPage={isSellerPage}/>)
+                      : null
+                  }
+                </div>
+            </div>
+          </>
+      })
+
+  }
 
   return(
     <div className={styles.shopCardWrap}>
@@ -36,11 +50,9 @@ export const ShopCard = (props) => {
           format="delete"
           onClick={onClickDeleteShop}/> */}
       </div>
-      <div className={styles.shopCardContainer}>
+      <div >
         {
-          items?.items?.length > 0 
-           ? items?.items?.map((item, i) =><ItemCard key={`${item.id}--${i}`} {...item} isSellerPage={isSellerPage}/>)
-           : null
+          categories && <CategoryComponent categoryArray={categories} />
         }
       </div>
 

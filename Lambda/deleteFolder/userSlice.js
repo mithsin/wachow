@@ -6,7 +6,7 @@ const userInfo = {
     "image": "",
     "shops": [
         {
-            "id": "store-id-kjqokjfoijj298jviasodkjf9ij298skdj1",
+            "id": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
             "shopName": "Wa Chow Store",
             "phone": "6785675678",
             "email": "shop@test.com",
@@ -172,6 +172,6 @@ const userInfo = {
     "owner": "",
     "updateTrigger": false,
     "shopIds": [
-        "store-id-kjqokjfoijj298jviasodkjf9ij298skdj1"
+        "405bccfe-9d11-4db3-b4c1-4b287897e9b7"
     ]
 }

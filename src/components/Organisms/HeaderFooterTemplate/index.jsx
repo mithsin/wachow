@@ -12,7 +12,7 @@ const navigate = useNavigate();
 const userStateData = useSelector(userInfo)
 const dispatch = useDispatch();
 
-useEffect(()=> {
+useEffect(()=> { 
   if(!userStateData?.isSeller) {
     console.log('dav, fetching mock data though user state dispatch')
     dispatch(fetchUserState('mock123'))
