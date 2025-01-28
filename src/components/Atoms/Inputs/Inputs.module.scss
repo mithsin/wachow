@@ -39,6 +39,18 @@
     }
 }
 
+.textInputWrapperNoMargin {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    .textInput {
+        input {
+            padding: 8px;
+            width: calc(100% - 16px);
+        }
+    }
+}
+
 .textInputLabel {
     font-size: 18px;
     font-weight: 600;

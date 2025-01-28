@@ -1,0 +1,36 @@
+
+.dropDown {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #c2c2c287;
+    border-radius: 0 0 8px 8px;
+    width: 100%;
+    li {
+        text-align: center;
+        padding: 4px 8px;
+        cursor: pointer;
+        border-bottom: 1px solid #c2c2c287;
+    }
+    li:hover {
+        background-color: #bdbdbdc0;
+        border-radius: 8px; 
+    }
+}
+
+.dowpdownInputWrapper {
+    display: flex;
+    .dowpdownInput {
+        width: calc(100% - 50px);
+    }
+    .dowpdownButton {
+        padding-left: 16px;
+        max-width: 50px;
+        display: flex;
+        align-items: end;
+        button {
+            height: 35px
+        }
+    }
+}

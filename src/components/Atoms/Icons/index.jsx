@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
+    faChevronUp,
+    faChevronDown,
     faPlus,
     faSortDown,
     faMinus,
@@ -17,6 +19,9 @@ import {
     faMagnifyingGlassLocation
 } from '@fortawesome/free-solid-svg-icons';
 
+export const ChevronUp = ({className, onClick, size="1x"}) => <FontAwesomeIcon icon={faChevronUp} className={className} size={size} onClick={onClick}/>;
+
+export const ChevronDown = ({className, onClick, size="1x"}) => <FontAwesomeIcon icon={faChevronDown} className={className} size={size} onClick={onClick}/>;
 
 export const PlusIcon = ({className, onClick, size="1x"}) => <FontAwesomeIcon icon={faPlus} className={className} size={size} onClick={onClick}/>;
 

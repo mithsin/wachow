@@ -17,18 +17,25 @@ const itemTableName = "waChow-item-db";
 
 const groupByKey = (array, key) => {
   const result = {};
+  const arrayOfKey = []
 
   array.forEach(item => {
     const keyValue = item[key];
 
     if (!result[keyValue]) {
       result[keyValue] = [];
+      arrayOfKey.push(keyValue)
     }
 
     result[keyValue].push(item);
   });
 
-  return Object.values(result);
+  return {
+    categories: Object.values(result),
+    categoryList: arrayOfKey
+  };
+  // const newValue = Object.entries(result).map(([key, value]) => [{'category': key, items: value}]);
+  // return newValue;
 }
 
 export const handler = async (event, context) => {
@@ -62,7 +69,6 @@ export const handler = async (event, context) => {
         ); 
         break;
       case "PUT":
-            console.log("triggered PUT");
             const getBody = await dynamo.send(
                 new GetCommand({
                   TableName: shopTableName,
@@ -141,7 +147,7 @@ export const handler = async (event, context) => {
           "$metadata": data.$metadata,
           "Responses": {
             "shop": shopResponse.Item,
-            "categories": groupByKey(data.Responses[itemTableName], "categoryName")
+            ...groupByKey(data.Responses[itemTableName], "categoryName")
           }
         }
         body = convertResponseName;

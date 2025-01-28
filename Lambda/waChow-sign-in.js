@@ -22,7 +22,6 @@ export const handler = async (event) => {
     });
 
     const user = client.send(command);
-    console.log('user-->: ', user)
     return user;
 };
 

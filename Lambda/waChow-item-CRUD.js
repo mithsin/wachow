@@ -34,7 +34,6 @@ export const handler = async (event, context) => {
         body = `Deleted item ${event.id}`;
         break;
       case "GET":
-        console.log("triggered item ");
         body = await dynamo.send(
           new GetCommand({
             TableName: itemTableName,

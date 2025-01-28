@@ -16,13 +16,14 @@ export const ShopCard = (props) => {
     shopName,
     description,
     categories,
+    categoryList,
     isSellerPage
   } = props;
 
   const CategoryComponent = ({categoryArray}) => {
     return Object.entries(categoryArray).map(([key, value]) => {
           return <>
-            <div className={styles.shopCardWrap}>
+            <div key={key} className={styles.shopCardWrap}>
                 <h1>{key}</h1>
                 <div className={styles.shopCardContainer}>
                   {
@@ -36,7 +37,6 @@ export const ShopCard = (props) => {
       })
 
   }
-
   return(
     <div className={styles.shopCardWrap}>
       <h2>{shopName}</h2>

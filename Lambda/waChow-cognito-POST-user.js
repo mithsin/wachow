@@ -28,7 +28,6 @@ export const handler = async (event) => {
       });
       const user = await client.send(command);
       if(user && user.UserStatus === "CONFIRMED"){
-		console.log('user--: ', user)
         return user
     } else {
         return {
@@ -51,9 +50,7 @@ export const handler = async (event) => {
     
     try {
         const response = await client.send(command);
-		// console.log('response: ', response)
         const userInfo = getUser(event.email)
-		console.log('userInfo: ', userInfo)
 		return userInfo;
       } catch (error) {
         console.error('Error:', error)

@@ -3,7 +3,7 @@ const blankImage = "https://cdn1.vectorstock.com/i/1000x1000/50/20/no-photo-or-b
 export const mockShopData = {
     "$metadata": {
         "httpStatusCode": 200,
-        "requestId": "E06V9431OUL2O20NBDBGEAGKF7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+        "requestId": "BOSA78T5U8N8SKNARR4SHL0A7RVV4KQNSO5AEMVJF66Q9ASUAAJG",
         "attempts": 1,
         "totalRetryDelay": 0
     },
@@ -39,9 +39,9 @@ export const mockShopData = {
             "typename": "shop"
         },
         "categories": {
-            "noodle": [
+            "NOODLE": [
                 {
-                    "categoryName": "noodle",
+                    "categoryName": "NOODLE",
                     "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
                     "typename": "Item",
                     "updatedAt": "",
@@ -68,7 +68,7 @@ export const mockShopData = {
                     "shopName": "True shop 01"
                 },
                 {
-                    "categoryName": "noodle",
+                    "categoryName": "NOODLE",
                     "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
                     "typename": "Item",
                     "updatedAt": "",
@@ -95,9 +95,9 @@ export const mockShopData = {
                     "shopName": "True shop 01"
                 }
             ],
-            "dessert": [
+            "DESSERT": [
                 {
-                    "categoryName": "dessert",
+                    "categoryName": "DESSERT",
                     "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
                     "typename": "Item",
                     "updatedAt": "",
@@ -124,7 +124,7 @@ export const mockShopData = {
                     "shopName": "True shop 01"
                 },
                 {
-                    "categoryName": "dessert",
+                    "categoryName": "DESSERT",
                     "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
                     "typename": "Item",
                     "updatedAt": "2025-01-16T20:34:11.042Z",
@@ -150,9 +150,9 @@ export const mockShopData = {
                     "shopName": "True shop 01"
                 }
             ],
-            "main": [
+            "MAIN": [
                 {
-                    "categoryName": "main",
+                    "categoryName": "MAIN",
                     "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
                     "typename": "Item",
                     "updatedAt": "",
@@ -179,6 +179,11 @@ export const mockShopData = {
                     "shopName": "True shop 01"
                 }
             ]
-        }
+        },
+        "categoryList": [
+            "NOODLE",
+            "DESSERT",
+            "MAIN"
+        ]
     }
 }

@@ -44,7 +44,6 @@ const ImageUploader = ({
     let imageRegex = new RegExp(/[^\s]+(.*?).(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/);
     const isImage = (imageRegex.test(files.type));
 
-    console.log('isImage --->: ', isImage)
     // TODO: setup cloudinary
     if(isImage){
         setLoading(true);

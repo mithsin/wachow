@@ -46,7 +46,6 @@ export const handler = async (event, context) => {
         ); 
         break;
       case "PUT":
-            console.log("triggered PUT");
             const getBody = await dynamo.send(
                 new GetCommand({
                   TableName: shopTableName,

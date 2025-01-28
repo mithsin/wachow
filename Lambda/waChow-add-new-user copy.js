@@ -34,7 +34,6 @@ export const handler = async (event) => {
     } finally {
         body = JSON.stringify(body);
     }
- console.log('body----> ', body)
     return {
         statusCode,
         body,

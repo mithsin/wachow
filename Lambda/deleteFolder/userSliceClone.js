@@ -37,8 +37,7 @@ const initialState = {
 
 const replaceContentById = (replaceObject, originalArray) => {
   const index = originalArray.findIndex(originalProduct => originalProduct.id === replaceObject.shop.id);
-  console.log('dav, replaceObject: ', replaceObject)
-  console.log('dav, originalArray: ', originalArray)
+
   if (index !== -1) {
     return originalArray[index] = replaceObject;
   }
@@ -58,7 +57,6 @@ export const userSlice = createSlice({
           return updateUserData
         },
         setShopUpdate(state, action){
-          console.log('setShopUpdate,action.payload-->: ', action.payload)
           return {
             ...state, 
             shops: [action.payload]
@@ -69,7 +67,6 @@ export const userSlice = createSlice({
           }
         },
         setDeleteShop(state, action){
-          console.log('action.payload-->: ', action.payload)
           return {
             ...state, 
             shops: {

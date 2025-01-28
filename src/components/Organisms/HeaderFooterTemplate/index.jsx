@@ -14,7 +14,6 @@ const dispatch = useDispatch();
 
 useEffect(()=> { 
   if(!userStateData?.isSeller) {
-    console.log('dav, fetching mock data though user state dispatch')
     dispatch(fetchUserState('mock123'))
   };
 },[])

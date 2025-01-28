@@ -23,7 +23,6 @@ export const signIn = async (email: string, password: string) => {
           'Content-Type': 'application/json'
       }
     })
-    console.log('res--->: ', res.data)
     return res.data
   } catch (error) {
     console.error("Error signing up: ", error);
@@ -41,7 +40,6 @@ export const signUp = async (email: string, password: string) => {
   try {
     axios.post('https://qg8euoyjgl.execute-api.us-east-1.amazonaws.com/prod/user', params)
       .then(res => {
-        console.log('res--->: ', res)
         return res.data
       })
   } catch (error) {
@@ -60,7 +58,6 @@ export const confirmSignUp = async (email: string, code: string) => {
   try {
     axios.post('https://qg8euoyjgl.execute-api.us-east-1.amazonaws.com/prod/user', params)
       .then(res => {
-        console.log('res--->: ', res)
         return res.data
       })
   } catch (error) {
@@ -78,7 +75,6 @@ export const signOut = async (AccessToken: string) => {
   try {
     axios.post('https://qg8euoyjgl.execute-api.us-east-1.amazonaws.com/prod/user', params)
       .then(res => {
-        console.log('res--->: ', res)
         return res.data
       })
   } catch (error) {

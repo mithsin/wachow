@@ -38,8 +38,10 @@ const initialState = {
 const replaceContentById = (replaceObject, originalArray) => {
   const convertShop = {
     ...replaceObject.shop,
-    categories: replaceObject.categories
+    categories: replaceObject.categories,
+    categoryList: replaceObject.categoryList
   }
+
   const index = originalArray.findIndex(originalProduct => originalProduct.id === convertShop.id);
   if (index !== -1) {
     return originalArray[index] = convertShop;
@@ -66,7 +68,6 @@ export const userSlice = createSlice({
           }
         },
         setDeleteShop(state, action){
-          console.log('action.payload-->: ', action.payload)
           return {
             ...state, 
             shops: {
@@ -98,7 +99,6 @@ export const {
 
 
 export const fetchUserState = ( userId ) => async(dispatch) => {
-  console.log('dav, shopId-fetchUserState->: ', userId)
 
   await dispatch(setUserInfo(mockFullData));
   dispatch(setUpdateTrigger(false));

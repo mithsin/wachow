@@ -7,6 +7,7 @@ import { Button } from 'components/Atoms/Buttons';
 import { Modal } from 'components/Molecules/Modal';
 import { SizeInputField } from 'components/Molecules/FormComponents';
 import ImageUploader from 'components/Molecules/ImageUploader';
+import Dropdown from 'components/Molecules/Dropdown';
 
 import { useDispatch } from "react-redux";
 import { setAddItem } from "@src/slices/userSlice";
@@ -14,14 +15,15 @@ import { setAddItem } from "@src/slices/userSlice";
 export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
   const initSize = {
     id: uuidv4(),
-    categoryName: "",
     name: "Regular", 
-    price: ""
+    price: "",
+    categoryName: "main"
   }
   const dispatch = useDispatch();
   const [itemInput, setItemInput] = useState({});
   const [itemSize, setItemSize] = useState([initSize]);
   const [imageListState, setImageListState] = useState(userData?.images)
+  const [selectedCategoryItem, setSelectedCategoryItem] = useState("")
 
   const formInputChange = (e) => {
     setItemInput({ 
@@ -44,12 +46,14 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
       shopItemsId: userData.shopId,
       name: itemInput?.name,
       description: itemInput?.description,
-      categoryName: itemInput.categoryName,
+      // categoryName: itemInput.categoryName,
+      categoryName: itemInput?.addNewCategoryName?.toUpperCase() ?? selectedCategoryItem,
       images: imageListState,
       sizes: removeEmptySize,
       typename: "Item",
       owner: ""
     }
+    console.log('dav, inputConver', inputConver)
     dispatch(setAddItem(inputConver))
     setIsModalOpen(!isModalOpen)
     clearInputs()
@@ -68,14 +72,25 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
       label: "description", 
       placeholder: "description",
       value: itemInput.description || ''
-    },{
-      type: "text",
-      name: "categoryName", 
-      label: "categoryName", 
-      placeholder: "main",
-      value: itemInput.categoryName || ''
     }
   ];
+
+  const dropdownSetting = {
+    type: "dropdown",
+    name: "categoryName", 
+    label: "categoryName", 
+    categoryList: userData.categoryList,
+    placeholder: "main",
+    value: itemInput.categoryName || ''
+  }
+
+  const dropdownInput = {
+    type: "text",
+    name: "addNewCategoryName", 
+    label: "Add New Category Name", 
+    placeholder: "Optional add new category name",
+    value: itemInput.addNewCategoryName || ''
+  }
 
   return(
     <Modal
@@ -92,11 +107,20 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
             {
               inputSettings.map((inputSetting)=>
                 <TextInput 
-                  key={inputSetting.name} 
-                  { ...inputSetting } 
-                  onChange={ formInputChange } />
+                key={inputSetting.name} 
+                { ...inputSetting } 
+                onChange={ formInputChange } />
               )
             }
+
+            <div>
+              <Dropdown 
+                items={dropdownSetting?.categoryList} 
+                onClick={setSelectedCategoryItem}
+                dropdownInput={dropdownInput}
+                formInputChange={formInputChange}
+              />
+            </div>
             <div className={styles['sizeWrapper']}>
               <SizeInputField
                 itemSize={itemSize}

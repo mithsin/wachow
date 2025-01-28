@@ -38,7 +38,6 @@ const ImageUploader = ({
                 setImageURL(url780);
             })
             .then(res => {
-                console.log('image-upload-res-->: ', res)
                 setLoading(false)
             })
             .catch(err=> console.log(err))
