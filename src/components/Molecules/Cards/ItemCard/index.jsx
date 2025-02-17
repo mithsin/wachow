@@ -17,7 +17,7 @@ export const ItemCard = (props) => {
     sizes = [], 
     ingrediances, 
     reviews = [],
-    shopItemsId,
+    shopId,
     isSellerPage
   } = props;
   const [isEdit, setIsEdit] = useState(false);
@@ -62,7 +62,7 @@ export const ItemCard = (props) => {
         <div className={styles.itemInfoWrapper}>
           <div>
             <div className={styles.itemTitle}>
-              <Link to={`/shop/${shopItemsId}/i/${id}`} className={styles.itemTitleSpan}>
+              <Link to={`/shop/${shopId}/i/${id}`} className={styles.itemTitleSpan}>
                 {itemName}
               </Link>
             </div>
@@ -71,7 +71,7 @@ export const ItemCard = (props) => {
                 <span className={styles.priceText}>{formatter.format(sizes[0]['price'])}</span> 
                 <span className={styles.typeText}>{sizes[0]['name']}</span>
               </div>
-              : <div className={styles.priceWrapper}>Check price with show owner</div>
+              : <div className={styles.priceWrapper}>Check price with shop owner</div>
             }
             { reviews?.length > 0 && 
               <div>

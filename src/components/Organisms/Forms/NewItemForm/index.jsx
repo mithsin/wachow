@@ -17,7 +17,7 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     id: uuidv4(),
     name: "Regular", 
     price: "",
-    categoryName: "main"
+    categoryName: "MAIN"
   }
   const dispatch = useDispatch();
   const [itemInput, setItemInput] = useState({});
@@ -41,19 +41,15 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     const removeEmptySize = itemSize.filter(size => !!size.name)
 
     const inputConver = {
-      id: uuidv4(),
       shopName: userData.shopName,
-      shopItemsId: userData.shopId,
+      shopId: userData.shopId,
+      owner: userData.owner,
       name: itemInput?.name,
       description: itemInput?.description,
-      // categoryName: itemInput.categoryName,
       categoryName: itemInput?.addNewCategoryName?.toUpperCase() ?? selectedCategoryItem,
       images: imageListState,
       sizes: removeEmptySize,
-      typename: "Item",
-      owner: ""
     }
-    console.log('dav, inputConver', inputConver)
     dispatch(setAddItem(inputConver))
     setIsModalOpen(!isModalOpen)
     clearInputs()
@@ -72,6 +68,12 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
       label: "description", 
       placeholder: "description",
       value: itemInput.description || ''
+    },{
+      type: "text",
+      name: "ingrediances", 
+      label: "ingrediances", 
+      placeholder: "ingrediances",
+      value: itemInput.ingrediances || ''
     }
   ];
 

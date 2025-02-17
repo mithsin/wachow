@@ -34,6 +34,7 @@ export const handler = async (event, context) => {
         body = `Deleted item ${event.id}`;
         break;
       case "GET":
+        console.log("triggered item ");
         body = await dynamo.send(
           new GetCommand({
             TableName: itemTableName,
@@ -67,7 +68,7 @@ export const handler = async (event, context) => {
             }));
             body = body.Item;
         break;
-      case "POST":
+      case "ADD_NEW_ITEM":
         if(event.updateJson){
 
           const randomId = context.awsRequestId;
@@ -78,7 +79,8 @@ export const handler = async (event, context) => {
               Item: {
                 ...event.updateJson,
                 createdAt: timestamp,
-                id: randomId
+                id: randomId,
+                typename: "Item"
               },
           }));
   
@@ -86,7 +88,7 @@ export const handler = async (event, context) => {
             new GetCommand({
               TableName: shopTableName,
               Key: {
-                id: event.id,
+                id: event.shopId,
               },
             })
           );

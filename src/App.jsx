@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import ProtectedRoute from './utils/ProtectedRoute';
 import { HeaderFooterTemplate } from "@src/components/Organisms/HeaderFooterTemplate";
+
 import './App.css';
 
 import { Landing } from 'pages/Landing';

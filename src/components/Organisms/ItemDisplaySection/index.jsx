@@ -20,17 +20,32 @@ export const ItemDisplaySection = (props) => {
     sizes = [], 
     ingrediances, 
     reviews = [],
-    shopItemsId,
+    shopId,
     isSellerPage,
     description
   } = props;
   const [isEdit, setIsEdit] = useState(false);
   const [isUpdateItemOpen, setIsUpdateItemOpen] = useState(false);
 
+  const SizeContent = ({sizeInfo}) => {
+    if(sizeInfo?.length > 0){
+      return sizeInfo.map(si => {
+        return (
+          <div className={styles.priceWrapper}>
+            <span className={styles.priceText}>{formatter.format(si['price'])}</span> 
+            <span className={styles.typeText}>{si['name']}</span>
+          </div>
+        ) 
+      }) 
+    } else {
+      return <div className={styles.priceWrapper}>Check price with shop owner</div>
+    }
+  }
+
   return(
     <div className={styles.ItemDisplaySectionContainer}>
       <div className={styles.swiperContainer}>
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+        {/* <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
               { images?.length > 0 ?
                 images?.map((list, i) => 
                   <SwiperSlide key={`${list.itemName}--${i}`}>
@@ -43,20 +58,14 @@ export const ItemDisplaySection = (props) => {
                   className={styles.swipWrap}
                   style={{ backgroundImage: `url(${ blankImage })` }} />
               }
-            </Swiper>
+            </Swiper> */}
         </div>
         <div className={styles.itemInfoWrapper}>
           <div>
             <div className={styles.itemTitle}>
               {itemName}
             </div>
-            {sizes?.[0]?.['price'] ?       
-              <div className={styles.priceWrapper}>
-                <span className={styles.priceText}>{formatter.format(sizes[0]['price'])}</span> 
-                <span className={styles.typeText}>{sizes[0]['name']}</span>
-              </div>
-              : <div className={styles.priceWrapper}>Check price with show owner</div>
-            }
+            <SizeContent sizeInfo={sizes} />
             { reviews?.length > 0 && 
               <div>
                 <StarIcon size="1x" className={styles.starIcon}/> {`(${reviews?.length})`}
@@ -71,6 +80,9 @@ export const ItemDisplaySection = (props) => {
           <div>
             {description}
           </div>
+        }
+        {
+          ingrediances && <div>{ingrediances}</div>
         }
         <Button 
           label="Add to cart"

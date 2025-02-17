@@ -7,6 +7,7 @@ import axios from 'axios';
 import { mockHomeData, mockItemData } from './mockData';
 import { mockFullData } from "@src/slices/mockData/FullMockData";
 import { mockShopData } from "@src/slices/mockData/ShopMockData";
+import { item_6ed70dea_fa85_481d_b13d_9217fb7abdc3 } from "@src/slices/mockData/ItemMockData";
 
 const BASE_URL = "https://qg8euoyjgl.execute-api.us-east-1.amazonaws.com/prod";
 
@@ -141,11 +142,20 @@ export const fetchItemState = ( itemId ) => async(dispatch) => {
 }
 
 export const fetchItemPublicState = ( shopId, itemId ) => async(dispatch) => {
-  return
+  return item_6ed70dea_fa85_481d_b13d_9217fb7abdc3
 }
 
 export const setAddItem = ( inputConver ) => async(dispatch) => {
-  console.log('setAddItem-inputConver-->: ', inputConver)
+  console.log('dav, setAddItem-inputConver-->: ', inputConver)
+  //   await axios.post(`${BASE_URL}/item`, {
+  //   "triggerSource": "ADD_NEW_ITEM",
+  //   "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",
+  //   "updateJson": inputConver
+  // }).then((response)=>{
+  //   console.log('dav, setAddItem-response: ', response)
+  // }).catch((error)=>{
+  //   console.log('get user error')
+  // })
 }
 
 export const setUpdateItem = ( inputConver ) => async(dispatch) => {

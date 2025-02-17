@@ -4,7 +4,7 @@ import styles from './Item.module.scss';
 
 import { useDispatch } from "react-redux";
 import { fetchItemPublicState } from "@src/slices/userSlice";
-
+import { Navigation } from "@src/components/Organisms/Navigation";
 import { ItemDisplaySection } from 'components/Organisms';
 
 export const ShopItem = () => {
@@ -23,9 +23,10 @@ export const ShopItem = () => {
     await dispatch(fetchItemPublicState(shopId, itemId))
       .then(res => setItemState(res))
   }
-
+  console.log('itemState, ', itemState)
   return itemState  === null ? <div>loading</div> : (
     <div>
+      <Navigation />
       <h1>Item Page</h1>
       <ItemDisplaySection {...itemState}/>
     </div>

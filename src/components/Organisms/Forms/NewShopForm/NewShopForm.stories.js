@@ -43,7 +43,7 @@ const Template = (props) => {
                 "ingrediances": "pie",
                 "createdAt": "2023-06-23T20:03:00.382Z",
                 "updatedAt": "2023-06-23T20:03:00.382Z",
-                "shopItemsId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
+                "shopId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
                 "owner": "e448c4b8-90d1-70fb-c3ce-6d03e7901524"
             },
             {
@@ -53,7 +53,7 @@ const Template = (props) => {
                 "ingrediances": "chart",
                 "createdAt": "2023-06-23T20:18:33.816Z",
                 "updatedAt": "2023-06-23T20:18:33.816Z",
-                "shopItemsId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
+                "shopId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",
                 "owner": "e448c4b8-90d1-70fb-c3ce-6d03e7901524"
             }
         ],

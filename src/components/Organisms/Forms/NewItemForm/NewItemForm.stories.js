@@ -44,7 +44,7 @@ const Template = (props) => {
                 "name": "hamburger",
                 "orderItemsId": null,
                 "owner": "248894a8-b051-7069-879b-1e98700a5486",
-                "shopItemsId": "c13db49d-ae22-4258-9844-878083fdbf81",
+                "shopId": "c13db49d-ae22-4258-9844-878083fdbf81",
                 "shopName": "hbm shop",
                 "sizes": [
                     {
