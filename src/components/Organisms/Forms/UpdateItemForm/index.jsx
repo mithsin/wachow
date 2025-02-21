@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styles from './NewItemForm.module.scss';
+import styles from './UpdateItemForm.module.scss';
 
 import { TextInput } from 'components/Atoms/Inputs';
 import { Button } from 'components/Atoms/Buttons';
@@ -10,56 +10,45 @@ import ImageUploader from 'components/Molecules/ImageUploader';
 import Dropdown from 'components/Molecules/Dropdown';
 
 import { useDispatch } from "react-redux";
-import { setAddItem } from "@src/slices/userSlice";
+import { setUpdateItem } from "@src/slices/userSlice";
 
-export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
-  const initSize = {
-    id: uuidv4(),
-    name: "Regular", 
-    price: "",
-    categoryName: "MAIN"
-  }
+export const UpdateItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
   const dispatch = useDispatch();
   const [itemInput, setItemInput] = useState({});
-  const [itemSize, setItemSize] = useState([initSize]);
-  const [imageListState, setImageListState] = useState(userData?.images)
+  const [itemSize, setItemSize] = useState([]);
+  const [imageListState, setImageListState] = useState([])
   const [selectedCategoryItem, setSelectedCategoryItem] = useState("")
+
+  useEffect(() => {
+    setItemInput(userData)
+    setItemSize(userData?.sizes)
+    setImageListState(userData?.images)
+  },[userData])
 
   const formInputChange = (e) => {
     setItemInput({ 
-      ...itemInput, 
+      ...userData,
+      ...itemInput,
       [e.target.name] : e.target.value
     })
   };
 
   const clearInputs = () => {
     setItemInput({})
-    setItemSize([initSize])
   };
 
   const onClickCreateItem = async() => {
-    const removeEmptySize = itemSize.filter(size => !!size.name)
-    const inputCategory = itemInput?.addNewCategoryName?.toUpperCase();
-    const categoryNameAdded = inputCategory ? inputCategory : selectedCategoryItem ? selectedCategoryItem : 'MAIN';
-    const categoryFilter = userData.categoryList.find(category => categoryNameAdded == category) 
-    const updatedCategoryList = categoryFilter ? userData.categoryList : userData.categoryList.concat(categoryNameAdded)
-
+    const removeEmptySize = itemSize.filter(size => !!size.name);
     const inputConver = {
-      shopName: userData.shopName,
-      shopId: userData.shopId,
-      owner: userData.owner,
-      name: itemInput?.name,
-      description: itemInput?.description,
-      categoryName: categoryNameAdded,
+      ...itemInput,
       images: imageListState,
       sizes: removeEmptySize,
-      cagetoryList: updatedCategoryList
     }
-    console.log('dav, inputConver ', inputConver)
-    // dispatch(setAddItem(inputConver))
-    // dispatch(setUpdateShop(inputConver))
-    setIsModalOpen(!isModalOpen)
-    clearInputs()
+    console.log('dav, inputConver: ', inputConver)
+    console.log('dav, setUpdateItem(inputConver)-->: ', {...userData, ...inputConver})
+    // dispatch(setUpdateItem(inputConver))
+    // setIsModalOpen(!isModalOpen)
+    // clearInputs()
   }
 
   const inputSettings = [
@@ -68,19 +57,19 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
       name: "name", 
       label: "Item Name", 
       placeholder: "Item Name",
-      value: itemInput.name || ''
+      value: itemInput.name
     },{
       type: "text",
       name: "description", 
       label: "description", 
       placeholder: "description",
-      value: itemInput.description || ''
+      value: itemInput.description
     },{
       type: "text",
       name: "ingredients", 
       label: "ingredients", 
       placeholder: "ingredients",
-      value: itemInput.ingredients || ''
+      value: itemInput.ingredients
     }
   ];
 
@@ -90,7 +79,7 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     label: "categoryName", 
     categoryList: userData.categoryList,
     placeholder: "main",
-    value: itemInput.categoryName || ''
+    value: itemInput.categoryName
   }
 
   const dropdownInput = {
@@ -98,10 +87,10 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
     name: "addNewCategoryName", 
     label: "Add New Category Name", 
     placeholder: "Optional add new category name",
-    value: itemInput.addNewCategoryName || ''
+    value: itemInput.addNewCategoryName
   }
 
-  return(
+  return userData && (
     <Modal
       setIsModalOpen={setIsModalOpen}
       isModalOpen={isModalOpen}
@@ -152,4 +141,4 @@ export const NewItemForm = ({setIsModalOpen, isModalOpen, userData}) => {
   )
 }
 
-export default NewItemForm;
+export default UpdateItemForm;

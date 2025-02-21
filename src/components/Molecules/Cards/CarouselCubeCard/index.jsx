@@ -94,7 +94,7 @@ export default CarouselCubeCard;
 //             "__typename": "Size"
 //         }
 //     ],
-//     "ingrediances": "this is money food ingrediances",
+//     "ingredients": "this is money food ingredients",
 //     "createdAt": "2023-07-12T15:00:51.154Z",
 //     "updatedAt": "2023-07-12T15:00:51.154Z",
 //     "shopId": "c782a8de-e981-4b3f-8de3-5ab29106aa9b",

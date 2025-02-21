@@ -70,7 +70,7 @@ export const mockFullData = {
   //           name: "large",
   //           price: "16.55",
   //         }],
-  //         ingrediances: "ingrediances and blah blah blah blha blah blah blah"
+  //         ingredients: "ingredients and blah blah blah blha blah blah blah"
   //       },{
   //         id: "item-id-1kofjok2jokfjodkjsfok1j2okefjsdokfjo11",
   //         name: "chicken food fried rice",
@@ -92,7 +92,7 @@ export const mockFullData = {
   //           name: "large",
   //           price: "16.55",
   //         }],
-  //         ingrediances: "blah blah blah blha blah blah blah"
+  //         ingredients: "blah blah blah blha blah blah blah"
   //       }],
   //     },{
   //       id: "category-id-1kofjok2jokfjodkjsfok1j2okefjsdokfjo22",
@@ -118,7 +118,7 @@ export const mockFullData = {
   //           name: "large",
   //           price: "16.55",
   //         }],
-  //         ingrediances: "ingrediances and blah blah blah blha blah blah blah"
+  //         ingredients: "ingredients and blah blah blah blha blah blah blah"
   //       }],
   //     }]
   //   },
@@ -200,7 +200,7 @@ export const mockFullData = {
 //           name: "large",
 //           price: "16.55",
 //         }],
-//         ingrediances: "ingrediances and blah blah blah blha blah blah blah"
+//         ingredients: "ingredients and blah blah blah blha blah blah blah"
 //       },{
 //         id: "item-id-1kofjok2jokfjodkjsfok1j2okefjsdokfjo11",
 //         name: "chicken food fried rice",
@@ -237,7 +237,7 @@ export const mockFullData = {
 //           name: "large",
 //           price: "16.55",
 //         }],
-//         ingrediances: "blah blah blah blha blah blah blah"
+//         ingredients: "blah blah blah blha blah blah blah"
 //       }],
 //     },{
 //       id: "category-id-1kofjok2jokfjodkjsfok1j2okefjsdokfjo22",
@@ -278,7 +278,7 @@ export const mockFullData = {
 //           name: "large",
 //           price: "16.55",
 //         }],
-//         ingrediances: "ingrediances and blah blah blah blha blah blah blah"
+//         ingredients: "ingredients and blah blah blah blha blah blah blah"
 //       }],
 //     }]
 //   }],

@@ -162,6 +162,10 @@ export const setUpdateItem = ( inputConver ) => async(dispatch) => {
   console.log('setUpdateItem-inputConver-->: ', inputConver)
 }
 
+export const setUpdateShop = ( inputConver ) => async(dispatch) => {
+  console.log('setUpdateShop-inputConver-->: ', inputConver)
+}
+
 export const setDeleteItem = ( id ) => async(dispatch) => {
   console.log('setDeleteItem-id-->: ', id)
 }

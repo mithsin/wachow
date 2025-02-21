@@ -38,7 +38,7 @@ const Template = (props) => {
         "items": [
             {
                 "id": "1b43f4a2-4eb1-4d38-93ea-df0675dbf04e",
-                "ingrediances": "meat and stuff",
+                "ingredients": "meat and stuff",
                 "description": null,
                 "locationItemsId": null,
                 "name": "hamburger",

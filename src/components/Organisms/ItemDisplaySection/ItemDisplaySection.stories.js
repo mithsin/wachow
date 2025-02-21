@@ -27,7 +27,7 @@ const Template = (props) => {
     "id": "78ef7e21-b6e9-4a77-b4f1-85261a444d4f",
     "shopName": "2200FirstShop",
     "name": "test",
-    "ingrediances": "pie",
+    "ingredients": "pie",
     "createdAt": "2023-06-23T20:03:00.382Z",
     "updatedAt": "2023-06-23T20:03:00.382Z",
     "shopId": "shop-e448c4b8-90d1-70fb-c3ce-6d03e7901524",

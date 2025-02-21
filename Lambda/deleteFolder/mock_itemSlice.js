@@ -38,7 +38,7 @@
       }
   ],
   "id": "3aee8fcb-2070-4269-bd4c-325e0424dbda",
-  "ingrediances": "a slice of dragon fire",
+  "ingredients": "a slice of dragon fire",
   "name": "dragon fire",
   "shopName": "True shop 01"
 }
@@ -55,7 +55,7 @@
       "src": "https://res.cloudinary.com/grubhub/image/upload/d_search:browse-images:default.jpg/w_267,q_80,fl_lossy,dpr_2.0,c_fill,f_auto,h_132/s1rpyrpvzgnww1jmxus1"
      }
     ],
-    "ingrediances": "General Tso's Chicken is that perfect combination of sweet, savoury, spicy and tangy with crispy Chinese chicken bites.",
+    "ingredients": "General Tso's Chicken is that perfect combination of sweet, savoury, spicy and tangy with crispy Chinese chicken bites.",
     "name": "General Tao beef",
     "owner": "94a85458-20c1-7084-23a9-6f5ca6be8ef0",
     "shopId": "405bccfe-9d11-4db3-b4c1-4b287897e9b7",

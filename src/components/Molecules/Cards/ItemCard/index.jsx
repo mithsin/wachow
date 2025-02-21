@@ -15,7 +15,7 @@ export const ItemCard = (props) => {
     name: itemName, 
     images = [], 
     sizes = [], 
-    ingrediances, 
+    ingredients, 
     reviews = [],
     shopId,
     isSellerPage

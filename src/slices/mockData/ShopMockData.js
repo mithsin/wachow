@@ -75,7 +75,7 @@ export const mockShopData = {
                         }
                     ],
                     "id": "26745c0f-72b5-4f7c-83e3-fd61779d37b5",
-                    "ingrediances": "General Tso's Chicken is that perfect combination of sweet, savoury, spicy and tangy with crispy Chinese chicken bites.",
+                    "ingredients": "General Tso's Chicken is that perfect combination of sweet, savoury, spicy and tangy with crispy Chinese chicken bites.",
                     "name": "General Tao beef",
                     "shopName": "True shop 01"
                 }
@@ -263,7 +263,7 @@ export const mockShopData = {
                         }
                     ],
                     "id": "3aee8fcb-2070-4269-bd4c-325e0424dbda",
-                    "ingrediances": "a slice of dragon fire",
+                    "ingredients": "a slice of dragon fire",
                     "name": "dragon fire",
                     "shopName": "True shop 01"
                 },
@@ -289,7 +289,7 @@ export const mockShopData = {
                         }
                     ],
                     "id": "c01fcb83-982f-4091-83a3-828b91e4defb",
-                    "ingrediances": "a slice of Big Dragon fire",
+                    "ingredients": "a slice of Big Dragon fire",
                     "name": "Big Dragon ball",
                     "shopName": "True shop 01"
                 }
@@ -318,7 +318,7 @@ export const mockShopData = {
                         }
                     ],
                     "id": "2856d469-d38b-40c4-95e9-73124e71aac7",
-                    "ingrediances": "hand make noodle with soy sauce",
+                    "ingredients": "hand make noodle with soy sauce",
                     "name": "dry noodle",
                     "shopName": "True shop 01"
                 },
@@ -345,7 +345,7 @@ export const mockShopData = {
                         }
                     ],
                     "id": "ca0dae3e-9684-47ba-bc0f-04e633c62d49",
-                    "ingrediances": "very good fried noodle",
+                    "ingredients": "very good fried noodle",
                     "name": "chicken noodle",
                     "shopName": "True shop 01"
                 }

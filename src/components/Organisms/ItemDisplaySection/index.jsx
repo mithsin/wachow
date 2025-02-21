@@ -18,7 +18,7 @@ export const ItemDisplaySection = (props) => {
     name: itemName, 
     images = [], 
     sizes = [], 
-    ingrediances, 
+    ingredients, 
     reviews = [],
     shopId,
     isSellerPage,
@@ -45,26 +45,41 @@ export const ItemDisplaySection = (props) => {
   return(
     <div className={styles.ItemDisplaySectionContainer}>
       <div className={styles.swiperContainer}>
-        {/* <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-              { images?.length > 0 ?
-                images?.map((list, i) => 
-                  <SwiperSlide key={`${list.itemName}--${i}`}>
-                    <div
-                      className={styles.swipWrap}
-                      style={{ backgroundImage: `url(${ list?.src ? list?.src : blankImage })` }} />
-                  </SwiperSlide>
-                ) : 
+        <Swiper pagination={true} modules={[Pagination]} className={styles.swiper}>
+          { images?.length > 0 ?
+            images?.map((list, i) => 
+              <SwiperSlide key={`${list.itemName}--${i}`}>
                 <div
                   className={styles.swipWrap}
-                  style={{ backgroundImage: `url(${ blankImage })` }} />
-              }
-            </Swiper> */}
+                  style={{ backgroundImage: `url(${ list?.src ? list?.src : blankImage })` }} />
+              </SwiperSlide>
+            ) : 
+            <div
+              className={styles.swipWrap}
+              style={{ backgroundImage: `url(${ blankImage })` }} />
+          }
+        </Swiper>
+            {/* { images?.length > 0 &&
+                images?.map((list, i) => 
+                  <div
+                      className={styles.swipWrap}
+                      style={{ backgroundImage: `url(${ list?.src ? list?.src : blankImage })` }} />
+                )
+              } */}
         </div>
         <div className={styles.itemInfoWrapper}>
           <div>
             <div className={styles.itemTitle}>
               {itemName}
             </div>
+            {description && 
+              <div className={styles.itemDescription}>
+                {description}
+              </div>
+            }
+            {
+              ingredients && <div>{ingredients}</div>
+            }
             <SizeContent sizeInfo={sizes} />
             { reviews?.length > 0 && 
               <div>
@@ -76,14 +91,7 @@ export const ItemDisplaySection = (props) => {
             <HeartIcon size="1x" className={styles.heartIcon}/>
           </div>
         </div>
-        {description && 
-          <div>
-            {description}
-          </div>
-        }
-        {
-          ingrediances && <div>{ingrediances}</div>
-        }
+
         <Button 
           label="Add to cart"
           onClick={() => { console.log('add to cart click')}}/>
